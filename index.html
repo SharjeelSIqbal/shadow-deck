@@ -12,54 +12,60 @@
 </head>
 <body>
   <header>
-    <div class="header row align-center">
-      <div class="logo-media">
-        <img class="logo" src="images/Yugioh-trading-card.png" alt="Yugioh Trading Cards">
-    </div>
-    <div>
+
+      <div class="header row align-center">
+        <div class="logo-media">
+          <img data-view="new" class="logo" src="images/Yugioh-trading-card.png" alt="Yugioh Trading Cards">
+        </div>
       <nav>
-        <a id="search" class="nav-links" href="">Search</a>
-        <a id="my-deck" class="nav-links" href="">My Deck</a>
+        <a data-view="search" id="search" class="nav-links" href="">Search</a>
+        <a data-view="deck" id="my-deck" class="nav-links" href="">My Deck</a>
       </nav>
-    </div>
-  </div>
+     </div>
   </header>
   <main class="cards-container">
     <div id="my-deck-view" class="row justify-center align-center">
       <h1>My Deck</h1>
     </div>
-    <div class="new-deck">
-      <div class="row justify-center align-center">
-        <h2>No deck available. Please click "New Deck" to continues </h2>
-      </div>
-      <div data-view="deck1" class="row justify-center align-center true-center" name="new">
-        <div class="card-container row justify-center align-center">
-          <div class="card-pack row justify-center align-center">
-            <img id="no-deck" class="card-deck" src="images/Yugioh-card-deck.png" alt="">
+
+    <div data-view="new" class="tab-view">
+      <div class="new-deck">
+        <div class="row justify-center align-center">
+          <h2>No deck available. Please click the deck to continue</h2>
+        </div>
+        <div class="row justify-center align-center true-center" name="new">
+          <div class="card-container row justify-center align-center">
+            <div class="card-pack row justify-center align-center">
+              <img data-view="deck" id="no-deck" class="card-deck" src="images/Yugioh-card-deck.png" alt="">
+            </div>
           </div>
         </div>
       </div>
-      <div class="row justify-center align-center">
-        <label for="new"><h2>New Deck</h2></label>
+    </div>
+
+    <div data-view="deck" class="tab-view hidden">
+      <div id="card-deck-count" class="minor-padding column-full row space-between">
+        <div class="silver-color">
+          <a data-view="search" id="add-card">+</a>
+        </div>
+        <div class="silver-color">
+          <h2>0/50</h2>
+        </div>
+        <div  class="silver-color">
+          <a id="delete-card">-</a>
+        </div>
+      </div>
+      <div id="click-to-add" class="row justify-center align-center">
+        <h2>Click "+" to search for a card</h2>
       </div>
     </div>
-    <div id="card-deck-count" class="minor-padding column-full row space-between hidden">
-      <div id="add-card" class="silver-color">
-        <h2>+</h2>
-      </div>
-      <div class="silver-color">
-        <h2>0/50</h2>
-      </div>
-      <div id="delete-card" class="silver-color">
-        <h2>-</h2>
+
+    <div data-view="search" class="tab-view hidden">
+      <div id="search-bar" class="column-full row justify-center">
+        <input class="column-half search-bar" placetype="Search" placeholder="Search...">
       </div>
     </div>
-    <div id="click-to-add" class="row justify-center align-center">
-      <h2>Click "+" to search for a card</h2>
-    </div>
-    <div id="search-bar" class="column-full row justify-center hidden">
-      <input class="column-half search-bar" placetype="Search" placeholder="Search...">
-    </div>
+
     <div id="card-row" class="column-full wrap row space-around align-center">
     </div>
   </main>
