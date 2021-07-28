@@ -1,0 +1,102 @@
+body {
+  font-family: "Saira Condensed", sans-serif;
+}
+
+.header {
+  background-color: black;
+}
+
+.card-pack {
+  height: 550px;
+  width: 380px;
+  background-color: #93746a;
+}
+
+.card-container {
+  height: 600px;
+  width: 425px;
+  background-color: #f6f6f6;
+}
+
+.search-bar-padding {
+  padding: 40px 0;
+}
+
+a {
+  font-size: 28px;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: white;
+}
+
+.silver-color {
+  color: #bcbcbc;
+}
+
+.cards-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.small-card {
+  width: 201px;
+  height: 296px;
+}
+
+.card {
+  padding: 20px;
+}
+
+.nav-links,
+.minor-padding {
+  padding: 0 40px;
+}
+
+.search-bar {
+  box-shadow: 2px 1px lightslategray;
+  padding-left: 0.5rem;
+  height: 2.5rem;
+  font-size: 24px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 375px) {
+  .header {
+    justify-content: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .card-container {
+    height: 450px;
+    width: 325px;
+  }
+
+  .card-pack {
+    height: 400px;
+    width: 280px;
+  }
+
+  .card-deck {
+    width: 85%;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .small-card {
+    width: 180px;
+    height: 220px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+}

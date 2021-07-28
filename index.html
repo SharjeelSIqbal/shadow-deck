@@ -4,15 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
-  <link rel="icon" href="images/favicon.ico">
+  <link rel="icon" href="images/Blue-eyes.jpeg">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+
+      <div class="header row align-center">
+        <div class="logo-media">
+          <img data-view="new" class="logo view-swap" src="images/Yugioh-trading-card.png" alt="Yugioh Trading Cards">
+        </div>
+      <nav>
+        <a data-view="search" id="search" class="nav-links view-swap" href="">Search</a>
+        <a data-view="deck" id="my-deck" class="nav-links view-swap" href="">My Deck</a>
+      </nav>
+     </div>
   </header>
-  <main>
+  <main class="cards-container">
+    <div id="my-deck-view" class="row justify-center align-center">
+      <h1>My Deck</h1>
+    </div>
+
+    <div data-view="new" class="tab-view">
+      <div class="new-deck">
+        <div class="row justify-center align-center">
+          <h2>No deck available. Please click the deck to continue</h2>
+        </div>
+        <div class="row justify-center align-center true-center" name="new">
+          <div class="card-container row justify-center align-center">
+            <div class="card-pack row justify-center align-center">
+              <img data-view="deck" id="no-deck" class="card-deck view-swap" src="images/Yugioh-card-deck.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-view="deck" class="tab-view hidden">
+      <div id="card-deck-count" class="minor-padding column-full row space-between">
+        <div class="silver-color">
+          <a data-view="search" id="add-card" class="view-swap">+</a>
+        </div>
+        <div class="silver-color">
+          <h2>0/50</h2>
+        </div>
+        <div  class="silver-color">
+          <a id="delete-card">-</a>
+        </div>
+      </div>
+      <div id="click-to-add" class="row justify-center align-center">
+        <h2>Click "+" to search for a card</h2>
+      </div>
+    </div>
+
+    <div data-view="search" class="tab-view hidden">
+      <div id="search-bar" class="column-full row justify-center">
+        <input class="column-half search-bar" placetype="Search" placeholder="Search...">
+      </div>
+    </div>
+
+    <div id="card-row" class="column-full wrap row space-around align-center">
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
