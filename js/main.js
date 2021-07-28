@@ -13,12 +13,11 @@ function switchView(dataView) {
 
 function switchViewing(event) {
   event.preventDefault();
-  var $viewSwapper = document.querySelectorAll('.view-swap');
-  for (var i = 0; i < $viewSwapper.length; i++) {
-    if ($viewSwapper[i] === event.target) {
-      var dataView = $viewSwapper[i].getAttribute('data-view');
-      switchView(dataView);
-    }
+  if (!event.target.matches('.view-swap')) {
+    return;
+  }
+  if (event.target.matches('.view-swap')) {
+    switchView(event.target.getAttribute('data-view'));
   }
 }
 document.addEventListener('click', switchViewing);
