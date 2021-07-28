@@ -16,9 +16,7 @@ function switchViewing(event) {
   if (!event.target.matches('.view-swap')) {
     return;
   }
-  if (event.target.matches('.view-swap')) {
-    switchView(event.target.getAttribute('data-view'));
-  }
+  switchView(event.target.getAttribute('data-view'));
 }
 document.addEventListener('click', switchViewing);
 
