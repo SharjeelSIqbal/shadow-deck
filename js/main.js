@@ -49,30 +49,14 @@ function search(inputValue) {
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
   yugiohIndex.responseType = 'json';
   yugiohIndex.addEventListener('load', function () {
-    var archNames = yugiohIndex.response.data;
 
-    if (inputValue !== '') {
-      for (var i = 0; i < archNames.length; i++) {
-        uploadCard(archNames[i].card_images[0].image_url);
-      }
-    }
   });
   yugiohIndex.send();
-}
-
-function uploadCard(srcValue) {
-  // variable to hold all the images in so it's easier to the entirety rather than for loop through it.
-  // var $cardHolderDiv = document.createElement('div');
-  var $newCard = document.createElement('img');
-  var $cardRow = document.querySelector('#card-row');
-  $newCard.setAttribute('src', srcValue);
-  $newCard.className = 'card small-card';
-  $cardRow.append($newCard);
-  return $cardRow;
 }
 
 function searchInput(event) {
   var value = $searchBar.value;
   search(value);
 }
+
 $searchBar.addEventListener('blur', searchInput);
