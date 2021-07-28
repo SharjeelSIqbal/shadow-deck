@@ -1,13 +1,7 @@
-
-var $addCard = document.querySelector('#add-card');
-var $noDeck = document.querySelector('#no-deck');
-var $search = document.querySelector('#search');
-var $myDeck = document.querySelector('#my-deck');
-var $logo = document.querySelector('.logo');
 var $searchBar = document.querySelector('.search-bar');
-var $tabView = document.querySelectorAll('.tab-view');
 
 function switchView(dataView) {
+  var $tabView = document.querySelectorAll('.tab-view');
   for (var i = 0; i < $tabView.length; i++) {
     if ($tabView[i].getAttribute('data-view') === dataView) {
       $tabView[i].className = 'tab-view';
@@ -19,15 +13,15 @@ function switchView(dataView) {
 
 function switchViewing(event) {
   event.preventDefault();
-  var dataView = event.target.getAttribute('data-view');
-  switchView(dataView);
+  var $viewSwapper = document.querySelectorAll('.view-swap');
+  for (var i = 0; i < $viewSwapper.length; i++) {
+    if ($viewSwapper[i] === event.target) {
+      var dataView = $viewSwapper[i].getAttribute('data-view');
+      switchView(dataView);
+    }
+  }
 }
-
-$myDeck.addEventListener('click', switchViewing);
-$search.addEventListener('click', switchViewing);
-$noDeck.addEventListener('click', switchViewing);
-$addCard.addEventListener('click', switchViewing);
-$logo.addEventListener('click', switchViewing);
+document.addEventListener('click', switchViewing);
 
 function search(inputValue) {
   var yugiohIndex = new XMLHttpRequest();
@@ -43,5 +37,4 @@ function searchInput(event) {
   var value = $searchBar.value;
   search(value);
 }
-
 $searchBar.addEventListener('blur', searchInput);
