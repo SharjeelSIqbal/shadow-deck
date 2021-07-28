@@ -26,7 +26,7 @@ function myDeckAppears(event) {
   $cardCount.className = 'minor-padding column-full row space-between hidden';
   $searchBar.className = 'colun-full row justify-center hidden';
   $infoText.className = 'row justify-center align-center hidden';
-  $myDeckView.className = 'row justify-center align-center hidden';
+  $myDeckView.className = 'row justify-center align-center';
 }
 
 function newDeck(event) {
