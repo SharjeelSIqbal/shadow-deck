@@ -12,7 +12,7 @@ body {
   background-color: #93746a;
 }
 
-.card-container {
+.deck-container {
   height: 600px;
   width: 425px;
   background-color: #f6f6f6;
@@ -28,9 +28,9 @@ a {
 
 .nav-links {
   text-decoration: none;
-  color: white;
 }
 
+.nav-links,
 .silver-color {
   color: #bcbcbc;
 }
