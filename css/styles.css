@@ -47,6 +47,11 @@ a {
 
 .card {
   padding: 20px;
+  transition: 0.25s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.4);
 }
 
 .nav-links,
