@@ -41,3 +41,26 @@
 .space-between {
   justify-content: space-between;
 }
+
+.modal-appear {
+  background: black;
+  opacity: 0.25;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal {
+  margin: auto auto;
+  background-color: white;
+  border-radius: 1rem;
+  width: 800px;
+  height: 1000px;
+  top: 25%;
+  right: 25%;
+  bottom: 25%;
+  left: 25%;
+  position: fixed;
+}

@@ -118,3 +118,16 @@ function resetSearch() {
 }
 $searchBar.addEventListener('blur', searchInput);
 document.addEventListener('click', nextPrevPage);
+
+function newDeck(event) {
+  if (event.target.getAttribute('id') !== 'no-deck') {
+    return;
+  }
+  data.numberOfDecks++;
+  data.deck.push({
+    deck: data.numberOfDecks,
+    cards: []
+  });
+
+}
+document.addEventListener('click', newDeck);
