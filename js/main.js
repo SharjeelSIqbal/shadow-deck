@@ -146,7 +146,7 @@ function addCard(event) {
       if (event.target === cards[i]) {
         currentImage = i;
         srcImage = cards[i].getAttribute('src');
-        document.querySelector('.question').textContent = 'Add ' + currentData[i].name + 'to your deck?';
+        document.querySelector('.question').textContent = 'Add ' + currentData[i].name + ' to your deck?';
         var newModal = document.createElement('img');
         newModal.setAttribute('src', srcImage);
         newModal.className = 'column-full mobile-friendly';
