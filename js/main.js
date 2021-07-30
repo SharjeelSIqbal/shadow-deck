@@ -1,6 +1,8 @@
 var $searchBar = document.querySelector('.search-bar');
 var $cardRow = document.querySelector('#card-row');
 var currentPage = 0;
+var currentData = [];
+var currentImage;
 function switchView(dataView) {
   var $tabView = document.querySelectorAll('.tab-view');
   for (var i = 0; i < $tabView.length; i++) {
@@ -23,6 +25,7 @@ document.addEventListener('click', switchViewing);
 
 function search(inputValue) {
   resetSearch();
+  current20();
   var yugiohIndex = new XMLHttpRequest();
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
   yugiohIndex.responseType = 'json';
@@ -114,6 +117,7 @@ function resetSearch() {
   for (var i = resetSearch.length - 1; resetSearch.length !== 0; i--) {
     resetSearch[i].remove();
   }
+  currentData = [];
 
 }
 $searchBar.addEventListener('blur', searchInput);
@@ -128,6 +132,73 @@ function newDeck(event) {
     deck: data.numberOfDecks,
     cards: []
   });
-
+  document.querySelector('#no-decks-available').remove();
 }
 document.addEventListener('click', newDeck);
+
+function addCard(event) {
+  if ($cardRow.children) {
+    var srcImage;
+    var cards = $cardRow.getElementsByTagName('img');
+    var $add = document.querySelector('#add-image');
+    for (var i = 0; i < cards.length; i++) {
+      if (event.target === cards[i]) {
+        currentImage = i;
+        srcImage = cards[i].getAttribute('src');
+        document.querySelector('.question').textContent = 'Add ' + currentData[i].name + 'to your deck?';
+        var newModal = document.createElement('img');
+        newModal.setAttribute('src', srcImage);
+        newModal.className = 'column-full';
+        $add.prepend(newModal);
+        modalAppears();
+      }
+    }
+    if (event.target === document.querySelector('.confirm')) {
+      var $modalImage = document.querySelector('#add-image>img');
+      addCardToDeck(currentData[currentImage], 0);
+      // pushCard(src);
+      modalHide();
+      $modalImage.remove();
+    }
+
+    if (event.target === document.querySelector('.cancel')) {
+      modalHide();
+    }
+  }
+
+}
+
+function modalHide() {
+  var $modalBack = document.querySelector('#modal-background');
+  var $modal = document.querySelector('#modal');
+  $modal.className = 'modal hidden';
+  $modalBack.className = 'modal-appear hidden';
+}
+
+function modalAppears() {
+  var $modalBack = document.querySelector('#modal-background');
+  var $modal = document.querySelector('#modal');
+  $modal.className = 'modal';
+  $modalBack.className = 'modal-appear';
+}
+
+function current20() {
+  var yugiohIndex = new XMLHttpRequest();
+  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
+  yugiohIndex.responseType = 'json';
+  yugiohIndex.addEventListener('load', function () {
+    var listDataNumber = (currentPage + 1) * 20;
+    for (var i = currentPage * 20; i < listDataNumber; i++) {
+      if (yugiohIndex.response.data[i]) {
+        currentData.push(yugiohIndex.response.data[i]);
+      }
+    }
+  });
+  yugiohIndex.send();
+}
+
+function addCardToDeck(dataGiven, deckNumber) {
+  data.deck[deckNumber].cards.push(dataGiven);
+}
+
+document.addEventListener('click', addCard);

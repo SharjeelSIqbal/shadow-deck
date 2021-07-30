@@ -105,3 +105,22 @@ a {
     padding: 10px;
   }
 }
+
+.cancel {
+  background-color: red;
+}
+
+.confirm {
+  background-color: green;
+}
+
+.confirm,
+.cancel {
+  margin: 3rem 0;
+  font-size: 40px;
+  width: 200px;
+  height: 3rem;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+}

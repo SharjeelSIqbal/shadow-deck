@@ -29,7 +29,7 @@
 
     <div data-view="new" class="tab-view">
       <div class="new-deck">
-        <div class="row justify-center align-center">
+        <div id="no-decks-available" class="row justify-center align-center">
           <h2>No deck available. Please click the deck to continue</h2>
         </div>
         <div class="row justify-center align-center true-center" name="new">
@@ -65,9 +65,20 @@
       </div>
         <div id="card-row" class="row justify-center align-center wrap"></div>
     </div>
-    <div class="modal-appear"></div>
-    <div class="modal">
+    <div id="modal-background" class="modal-appear hidden"></div>
+    <div id="modal" class="modal hidden">
 
+
+        <div class="row column-full wrap justify-center align-center">
+          <h1 class="question"></h1>
+        </div>
+        <div class="row justify-center align-center">
+          <div id="add-image"></div>
+        </div>
+        <div class="row space-evenly align-center column-full">
+          <button class="confirm column-half">Confirm</button>
+          <button class="cancel column-half">Cancel</button>
+        </div>
     </div>
 
   </main>
