@@ -130,7 +130,8 @@ function newDeck(event) {
   data.numberOfDecks++;
   data.deck.push({
     deck: data.numberOfDecks,
-    cards: []
+    cards: [],
+    deckView: 'deck-' + data.numberOfDecks
   });
   document.querySelector('#no-decks-available').remove();
 }
