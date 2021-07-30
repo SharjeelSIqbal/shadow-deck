@@ -139,6 +139,7 @@ document.addEventListener('click', newDeck);
 function addCard(event) {
   if ($cardRow.children) {
     var srcImage;
+    var $modalImage = document.querySelector('#add-image>img');
     var cards = $cardRow.getElementsByTagName('img');
     var $add = document.querySelector('#add-image');
     for (var i = 0; i < cards.length; i++) {
@@ -148,13 +149,13 @@ function addCard(event) {
         document.querySelector('.question').textContent = 'Add ' + currentData[i].name + 'to your deck?';
         var newModal = document.createElement('img');
         newModal.setAttribute('src', srcImage);
-        newModal.className = 'column-full';
+        newModal.className = 'column-full mobile-friendly';
         $add.prepend(newModal);
         modalAppears();
       }
     }
     if (event.target === document.querySelector('.confirm')) {
-      var $modalImage = document.querySelector('#add-image>img');
+
       addCardToDeck(currentData[currentImage], 0);
       // pushCard(src);
       modalHide();
@@ -162,6 +163,7 @@ function addCard(event) {
     }
 
     if (event.target === document.querySelector('.cancel')) {
+      $modalImage.remove();
       modalHide();
     }
   }
