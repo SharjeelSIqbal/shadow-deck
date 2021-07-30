@@ -36,13 +36,13 @@ a {
 }
 
 .cards-container {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
 .small-card {
-  width: 201px;
-  height: 296px;
+  width: 350px;
+  height: 450px;
 }
 
 .card {
@@ -67,6 +67,25 @@ a {
   background-color: lightgray;
   border: none;
   border-radius: 0.5rem;
+}
+
+.cancel {
+  background-color: red;
+}
+
+.confirm {
+  background-color: green;
+}
+
+.confirm,
+.cancel {
+  margin: 3rem 0;
+  font-size: 40px;
+  width: 200px;
+  height: 3rem;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
 }
 
 @media screen and (max-width: 375px) {
@@ -103,5 +122,34 @@ a {
 
   .card {
     padding: 10px;
+  }
+
+  .mobile-friendly {
+    width: 250px;
+    height: 350px;
+  }
+
+  .modal {
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    border-radius: 1rem;
+    width: 350px;
+    height: 600px;
+    position: fixed;
+  }
+
+  .confirm,
+  .cancel {
+    margin: 1.5rem 0;
+    font-size: 30px;
+    width: 125px;
+    height: 2.5rem;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
   }
 }
