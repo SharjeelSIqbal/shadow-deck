@@ -3,6 +3,29 @@ var $cardRow = document.querySelector('#card-row');
 var currentPage = 0;
 var currentData = [];
 var currentImage;
+
+if (data.numberOfDecks !== 0) {
+  appendDeck(data.deck[0]);
+}
+function appendDeck(deck) {
+  var deckView = document.querySelector('#deck-row');
+  var deckViewDiv = document.createElement('div');
+  var cardCount = document.querySelector('#card-count');
+  cardCount.textContent = deck.cards.length + '/50';
+  deckViewDiv.className = 'row justify-center align-center wrap';
+  deckViewDiv.id = 'deck-card-collector';
+  deckViewDiv.setAttribute('data-deck', deck.deckView);
+  deckView.append(deckViewDiv);
+
+  for (var i = 0; i < deck.cards.length; i++) {
+    var imager = document.createElement('img');
+    imager.className = 'small-card card';
+    imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
+    deckViewDiv.append(imager);
+  }
+  return deckView;
+}
+
 function switchView(dataView) {
   var $tabView = document.querySelectorAll('.tab-view');
   for (var i = 0; i < $tabView.length; i++) {
@@ -13,7 +36,6 @@ function switchView(dataView) {
     }
   }
 }
-
 function switchViewing(event) {
   event.preventDefault();
   if (!event.target.matches('.view-swap')) {
@@ -158,7 +180,13 @@ function addCard(event) {
     if (event.target === document.querySelector('.confirm')) {
 
       addCardToDeck(currentData[currentImage], 0);
-      // pushCard(src);
+
+      var deckRow = document.querySelector('#deck-card-collector');
+      var imager = document.createElement('img');
+      imager.className = 'small-card card';
+      imager.setAttribute('src', currentData[currentImage].card_images[0].image_url);
+      deckRow.append(imager);
+      updateCounter(0);
       modalHide();
       $modalImage.remove();
     }
@@ -201,7 +229,14 @@ function current20() {
 }
 
 function addCardToDeck(dataGiven, deckNumber) {
-  data.deck[deckNumber].cards.push(dataGiven);
+  if (data.deck[deckNumber].cards.length < 50) {
+    data.deck[deckNumber].cards.push(dataGiven);
+  }
 }
 
 document.addEventListener('click', addCard);
+
+function updateCounter(deckCounter) {
+  var cardCounter = document.querySelector('#card-count');
+  cardCounter.textContent = data.deck[deckCounter].cards.length + '/50';
+}

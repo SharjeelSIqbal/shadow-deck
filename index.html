@@ -48,7 +48,7 @@
           <a data-view="search" id="add-card" class="view-swap">+</a>
         </div>
         <div class="silver-color">
-          <h2>0/50</h2>
+          <h2 id="card-count">0/50</h2>
         </div>
         <div  class="silver-color">
           <a id="delete-card">-</a>
@@ -57,6 +57,7 @@
       <div id="click-to-add" class="row justify-center align-center">
         <h2>Click "+" to search for a card</h2>
       </div>
+      <div id="deck-row"></div>
     </div>
 
     <div data-view="search" class="tab-view hidden">
@@ -68,7 +69,7 @@
     <div id="modal-background" class="modal-appear hidden"></div>
     <div id="modal" class="modal hidden">
         <div class="row column-full wrap justify-center align-center">
-          <h1 class="question"></h1>
+          <h2 class="question"></h2>
         </div>
         <div class="row justify-center align-center">
           <div id="add-image"></div>
