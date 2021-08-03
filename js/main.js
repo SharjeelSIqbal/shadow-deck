@@ -13,10 +13,11 @@ function appendDeck(deck) {
   var cardCount = document.querySelector('#card-count');
   cardCount.textContent = deck.cards.length + '/50';
   deckViewDiv.className = 'row justify-center align-center wrap';
-  deckViewDiv.id = 'deck-card-collector';
+  deckViewDiv.setAttribute('id', 'deck-card-collector');
   deckViewDiv.setAttribute('data-deck', deck.deckView);
   deckView.append(deckViewDiv);
-
+  // This part of code isn't working deck-card-collector isn't being appended?
+  // Could be because it's not doing anything anywhere excempt line 7
   for (var i = 0; i < deck.cards.length; i++) {
     var imager = document.createElement('img');
     imager.className = 'small-card card';
@@ -229,6 +230,7 @@ function current20() {
 }
 
 function addCardToDeck(dataGiven, deckNumber) {
+
   if (data.deck[deckNumber].cards.length < 50) {
     data.deck[deckNumber].cards.push(dataGiven);
   }
