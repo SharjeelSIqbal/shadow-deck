@@ -7,25 +7,25 @@ var currentImage;
 if (data.numberOfDecks !== 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').remove();
+  if (data.deck[0].cards) {
+    strongestMonsterPlaceHolder(0);
+  }
 }
 
 function strongestMonsterPlaceHolder(deckNumber) {
-  if (data.deck[deckNumber].cards[0]) {
-    var cardPlaceHolder = document.querySelector('#no-deck');
-    var strongMonsterAtk = 0;
-    var strongestMonster;
-    for (var i = 0; i < data.deck[0].cards.length; i++) {
-      var card = data.deck[0].cards[i];
-      if (card.atk && card.atk > strongMonsterAtk) {
-        strongMonsterAtk = card.atk;
-        strongestMonster = card;
-      }
+  var cardPlaceHolder = document.querySelector('#no-deck');
+  var strongestMonsterAtk = 0;
+  var strongestMonster;
+  for (var i = 0; i < data.deck[deckNumber].cards.length; i++) {
+    var card = data.deck[deckNumber].cards[i];
+    if (card.atk && card.atk > strongestMonsterAtk) {
+      strongestMonsterAtk = card.atk;
+      strongestMonster = card;
+      cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+      cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
     }
-    cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-    cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
-
-    return cardPlaceHolder;
   }
+  return cardPlaceHolder;
 }
 
 function appendDeck(deck) {
@@ -43,7 +43,6 @@ function appendDeck(deck) {
     imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
     deckViewDiv.append(imager);
   }
-  strongestMonsterPlaceHolder(0);
   return deckView;
 }
 
