@@ -3,6 +3,50 @@ var $cardRow = document.querySelector('#card-row');
 var currentPage = 0;
 var currentData = [];
 var currentImage;
+
+if (data.numberOfDecks !== 0) {
+  appendDeck(data.deck[0]);
+  document.querySelector('#no-decks-available').remove();
+}
+
+function strongestMonsterPlaceHolder(deckNumber) {
+  if (data.deck[deckNumber].cards[0]) {
+    var cardPlaceHolder = document.querySelector('#no-deck');
+    var strongMonsterAtk = 0;
+    var strongestMonster;
+    for (var i = 0; i < data.deck[0].cards.length; i++) {
+      var card = data.deck[0].cards[i];
+      if (card.atk && card.atk > strongMonsterAtk) {
+        strongMonsterAtk = card.atk;
+        strongestMonster = card;
+      }
+    }
+    cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+    cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+
+    return cardPlaceHolder;
+  }
+}
+
+function appendDeck(deck) {
+  var deckView = document.querySelector('#deck-row');
+  var deckViewDiv = document.createElement('div');
+  var cardCount = document.querySelector('#card-count');
+  cardCount.textContent = deck.cards.length + '/50';
+  deckViewDiv.className = 'row justify-center align-center wrap';
+  deckViewDiv.setAttribute('id', 'deck-card-collector');
+  deckViewDiv.setAttribute('data-deck', deck.deckView);
+  deckView.append(deckViewDiv);
+  for (var i = 0; i < deck.cards.length; i++) {
+    var imager = document.createElement('img');
+    imager.className = 'small-card card';
+    imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
+    deckViewDiv.append(imager);
+  }
+  strongestMonsterPlaceHolder(0);
+  return deckView;
+}
+
 function switchView(dataView) {
   var $tabView = document.querySelectorAll('.tab-view');
   for (var i = 0; i < $tabView.length; i++) {
@@ -13,7 +57,6 @@ function switchView(dataView) {
     }
   }
 }
-
 function switchViewing(event) {
   event.preventDefault();
   if (!event.target.matches('.view-swap')) {
@@ -130,9 +173,14 @@ function newDeck(event) {
   data.numberOfDecks++;
   data.deck.push({
     deck: data.numberOfDecks,
-    cards: []
+    cards: [],
+    deckView: 'deck-' + data.numberOfDecks
   });
-  document.querySelector('#no-decks-available').remove();
+  appendDeck(data.deck[0]);
+  if (document.querySelector('#no-decks-available')) {
+
+    document.querySelector('#no-decks-available').remove();
+  }
 }
 document.addEventListener('click', newDeck);
 
@@ -157,7 +205,13 @@ function addCard(event) {
     if (event.target === document.querySelector('.confirm')) {
 
       addCardToDeck(currentData[currentImage], 0);
-      // pushCard(src);
+
+      var deckRow = document.querySelector('#deck-card-collector');
+      var imager = document.createElement('img');
+      imager.className = 'small-card card';
+      imager.setAttribute('src', currentData[currentImage].card_images[0].image_url);
+      deckRow.append(imager);
+      updateCounter(0);
       modalHide();
       $modalImage.remove();
     }
@@ -200,7 +254,16 @@ function current20() {
 }
 
 function addCardToDeck(dataGiven, deckNumber) {
-  data.deck[deckNumber].cards.push(dataGiven);
+
+  if (data.deck[deckNumber].cards.length < 50) {
+    data.deck[deckNumber].cards.push(dataGiven);
+    strongestMonsterPlaceHolder(0);
+  }
 }
 
 document.addEventListener('click', addCard);
+
+function updateCounter(deckCounter) {
+  var cardCounter = document.querySelector('#card-count');
+  cardCounter.textContent = data.deck[deckCounter].cards.length + '/50';
+}

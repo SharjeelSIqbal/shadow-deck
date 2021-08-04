@@ -2,6 +2,23 @@ body {
   font-family: "Saira Condensed", sans-serif;
 }
 
+h1 {
+  font-size: 64px;
+}
+
+.card-placeholder {
+  width: 327px;
+  height: 480px;
+}
+
+.prev-page,
+.next-page,
+#delete-card,
+#add-card,
+h2 {
+  font-size: 32px;
+}
+
 .header {
   background-color: black;
 }
@@ -151,5 +168,10 @@ a {
     color: white;
     border: none;
     border-radius: 0.25rem;
+  }
+
+  .card-placeholder {
+    width: 238px;
+    height: 349px;
   }
 }
