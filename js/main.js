@@ -56,6 +56,7 @@ function switchView(dataView) {
   for (var i = 0; i < $tabView.length; i++) {
     if ($tabView[i].getAttribute('data-view') === dataView) {
       $tabView[i].className = 'tab-view';
+      data.view = $tabView[i].getAttribute('data-view');
     } else {
       $tabView[i].className = 'tab-view hidden';
     }
@@ -192,7 +193,7 @@ document.addEventListener('click', newDeck);
 
 function addDeleteCard(event) {
   var $modalImage = document.querySelector('#add-image>img');
-  if (document.querySelector('#search-id').className === 'tab-view') {
+  if (data.view === 'search') {
     if ($cardRow.children) {
       var srcImage;
       var cards = $cardRow.getElementsByTagName('img');
@@ -228,7 +229,7 @@ function addDeleteCard(event) {
       modalHide();
     }
   }
-  if (document.querySelector('#deck-id').className === 'tab-view') {
+  if (data.view === 'deck') {
     var deckCards = document.querySelectorAll('#deck-card-collector>img');
     var chosenCardSRC = '';
 
