@@ -9,21 +9,23 @@ if (data.numberOfDecks !== 0) {
   document.querySelector('#no-decks-available').remove();
 }
 
-function strongestMonsterPlaceHolder() {
-  var cardPlaceHolder = document.querySelector('#no-deck');
-  var strongMonsterAtk = 0;
-  var strongestMonster;
-  for (var i = 0; i < data.deck[0].cards.length; i++) {
-    var card = data.deck[0].cards[i];
-    if (card.atk && card.atk > strongMonsterAtk) {
-      strongMonsterAtk = card.atk;
-      strongestMonster = card;
+function strongestMonsterPlaceHolder(deckNumber) {
+  if (data.deck[deckNumber].cards[0]) {
+    var cardPlaceHolder = document.querySelector('#no-deck');
+    var strongMonsterAtk = 0;
+    var strongestMonster;
+    for (var i = 0; i < data.deck[0].cards.length; i++) {
+      var card = data.deck[0].cards[i];
+      if (card.atk && card.atk > strongMonsterAtk) {
+        strongMonsterAtk = card.atk;
+        strongestMonster = card;
+      }
     }
-  }
-  cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-  cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+    cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+    cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
 
-  return cardPlaceHolder;
+    return cardPlaceHolder;
+  }
 }
 
 function appendDeck(deck) {
@@ -41,7 +43,7 @@ function appendDeck(deck) {
     imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
     deckViewDiv.append(imager);
   }
-
+  strongestMonsterPlaceHolder(0);
   return deckView;
 }
 
@@ -175,8 +177,10 @@ function newDeck(event) {
     deckView: 'deck-' + data.numberOfDecks
   });
   appendDeck(data.deck[0]);
+  if (document.querySelector('#no-decks-available')) {
 
-  document.querySelector('#no-decks-available').remove();
+    document.querySelector('#no-decks-available').remove();
+  }
 }
 document.addEventListener('click', newDeck);
 
@@ -253,7 +257,7 @@ function addCardToDeck(dataGiven, deckNumber) {
 
   if (data.deck[deckNumber].cards.length < 50) {
     data.deck[deckNumber].cards.push(dataGiven);
-    strongestMonsterPlaceHolder();
+    strongestMonsterPlaceHolder(0);
   }
 }
 
