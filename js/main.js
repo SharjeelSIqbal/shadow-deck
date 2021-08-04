@@ -239,6 +239,7 @@ function addDeleteCard(event) {
         $deleteCard.src = chosenCardSRC;
         $deleteCard.className = 'column-full mobile-friendly';
         document.querySelector('#add-image').prepend($deleteCard);
+
         modalAppears();
 
       }
@@ -249,6 +250,8 @@ function addDeleteCard(event) {
       deckCards[currentImage].remove();
       data.deck[0].cards.splice(currentImage, 1);
       strongestMonsterPlaceHolder(0);
+      updateCounter(0);
+
     }
     if (event.target === document.querySelector('.cancel')) {
       $modalImage.remove();
