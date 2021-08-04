@@ -180,7 +180,9 @@ function newDeck(event) {
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
-  appendDeck(data.deck[0]);
+  if (!document.querySelector('#deck-row').children) {
+    appendDeck(data.deck[0]);
+  }
   if (document.querySelector('#no-decks-available')) {
 
     document.querySelector('#no-decks-available').remove();
