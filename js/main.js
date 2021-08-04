@@ -6,7 +6,27 @@ var currentImage;
 
 if (data.numberOfDecks !== 0) {
   appendDeck(data.deck[0]);
+  strongestMonsterPlaceHolder();
+
 }
+
+function strongestMonsterPlaceHolder() {
+  var cardPlaceHolder = document.querySelector('#no-deck');
+  var strongMonsterAtk = 0;
+  var strongestMonster;
+  for (var i = 0; i < data.deck[0].cards.length; i++) {
+    var card = data.deck[0].cards[i];
+    if (card.atk && card.atk > strongMonsterAtk) {
+      strongMonsterAtk = card.atk;
+      strongestMonster = card;
+    }
+  }
+  cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+  cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+
+  return cardPlaceHolder;
+}
+
 function appendDeck(deck) {
   var deckView = document.querySelector('#deck-row');
   var deckViewDiv = document.createElement('div');
@@ -156,6 +176,8 @@ function newDeck(event) {
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
+  appendDeck(data.deck[0]);
+
   document.querySelector('#no-decks-available').remove();
 }
 document.addEventListener('click', newDeck);
