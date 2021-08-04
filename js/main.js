@@ -6,8 +6,7 @@ var currentImage;
 
 if (data.numberOfDecks !== 0) {
   appendDeck(data.deck[0]);
-  strongestMonsterPlaceHolder();
-
+  document.querySelector('#no-decks-available').remove();
 }
 
 function strongestMonsterPlaceHolder() {
@@ -36,14 +35,13 @@ function appendDeck(deck) {
   deckViewDiv.setAttribute('id', 'deck-card-collector');
   deckViewDiv.setAttribute('data-deck', deck.deckView);
   deckView.append(deckViewDiv);
-  // This part of code isn't working deck-card-collector isn't being appended?
-  // Could be because it's not doing anything anywhere excempt line 7
   for (var i = 0; i < deck.cards.length; i++) {
     var imager = document.createElement('img');
     imager.className = 'small-card card';
     imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
     deckViewDiv.append(imager);
   }
+
   return deckView;
 }
 
@@ -255,6 +253,7 @@ function addCardToDeck(dataGiven, deckNumber) {
 
   if (data.deck[deckNumber].cards.length < 50) {
     data.deck[deckNumber].cards.push(dataGiven);
+    strongestMonsterPlaceHolder();
   }
 }
 
