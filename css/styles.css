@@ -14,6 +14,10 @@ h1 {
   font-size: 42px;
 }
 
+.roboto {
+  font-family: "Robto", sans-serif;
+}
+
 .card-placeholder {
   width: 327px;
   height: 480px;
