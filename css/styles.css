@@ -2,16 +2,16 @@ body {
   font-family: "Saira Condensed", sans-serif;
 }
 
-nav {
-  display: none;
-}
-
 a {
   font-size: 28px;
 }
 
 h1 {
   font-size: 42px;
+}
+
+.logo {
+  cursor: pointer;
 }
 
 .roboto {
@@ -21,6 +21,7 @@ h1 {
 .card-placeholder {
   width: 327px;
   height: 480px;
+  cursor: pointer;
 }
 
 .prev-page,
@@ -29,6 +30,13 @@ h1 {
 #add-card,
 h2 {
   font-size: 32px;
+}
+
+.prev-page,
+.next-page,
+#delete-card,
+#add-card {
+  cursor: pointer;
 }
 
 .header {
@@ -67,6 +75,7 @@ h2 {
 }
 
 .card {
+  cursor: pointer;
   padding: 20px;
   transition: 0.25s ease-in-out;
 }
@@ -100,6 +109,7 @@ h2 {
 
 .confirm,
 .cancel {
+  cursor: pointer;
   margin: 3rem 0;
   font-size: 40px;
   width: 200px;
@@ -112,6 +122,10 @@ h2 {
 @media screen and (max-width: 375px) {
   h2 {
     text-align: center;
+  }
+
+  nav {
+    display: none;
   }
 
   .deck-container {
