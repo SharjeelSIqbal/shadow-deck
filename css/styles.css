@@ -2,8 +2,16 @@ body {
   font-family: "Saira Condensed", sans-serif;
 }
 
+nav {
+  display: none;
+}
+
+a {
+  font-size: 28px;
+}
+
 h1 {
-  font-size: 64px;
+  font-size: 42px;
 }
 
 .card-placeholder {
@@ -33,14 +41,6 @@ h2 {
   height: 600px;
   width: 425px;
   background-color: #f6f6f6;
-}
-
-.search-bar-padding {
-  padding: 40px 0;
-}
-
-a {
-  font-size: 28px;
 }
 
 .nav-links {
@@ -106,12 +106,17 @@ a {
 }
 
 @media screen and (max-width: 375px) {
-  .header {
-    justify-content: center;
-  }
-
   h2 {
     text-align: center;
+  }
+
+  .deck-container {
+    width: 320px;
+    height: 440px;
+  }
+
+  .header {
+    justify-content: center;
   }
 
   .card-container {
@@ -126,10 +131,6 @@ a {
 
   .card-deck {
     width: 85%;
-  }
-
-  nav {
-    display: none;
   }
 
   .small-card {

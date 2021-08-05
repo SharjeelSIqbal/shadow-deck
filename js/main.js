@@ -25,7 +25,7 @@ function strongestMonsterPlaceHolder(deckNumber) {
       cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
       cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
     } else if (strongestMonsterAtk === 0) {
-      cardPlaceHolder.src = 'images/Yugioh-card-deck.png';
+      cardPlaceHolder.src = 'images/yugioh-card-deck.png';
       cardPlaceHolder.className = 'card-deck view-swap';
     }
   }
