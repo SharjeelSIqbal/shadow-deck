@@ -2,6 +2,11 @@ body {
   font-family: "Saira Condensed", sans-serif;
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
 a {
   font-size: 28px;
 }
@@ -10,8 +15,9 @@ h1 {
   font-size: 42px;
 }
 
-.logo {
-  cursor: pointer;
+.desktop-friendly {
+  width: 310px;
+  height: 420px;
 }
 
 .roboto {
@@ -21,7 +27,6 @@ h1 {
 .card-placeholder {
   width: 327px;
   height: 480px;
-  cursor: pointer;
 }
 
 .prev-page,
@@ -30,13 +35,6 @@ h1 {
 #add-card,
 h2 {
   font-size: 32px;
-}
-
-.prev-page,
-.next-page,
-#delete-card,
-#add-card {
-  cursor: pointer;
 }
 
 .header {
@@ -109,7 +107,6 @@ h2 {
 
 .confirm,
 .cancel {
-  cursor: pointer;
   margin: 3rem 0;
   font-size: 40px;
   width: 200px;
@@ -119,7 +116,13 @@ h2 {
   border-radius: 0.25rem;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 1024px) {
+  .small-card {
+    flex-basis: calc(100% / 3);
+  }
+}
+
+@media screen and (max-width: 642px) {
   h2 {
     text-align: center;
   }
@@ -194,3 +197,9 @@ h2 {
     height: 349px;
   }
 }
+
+/* @media screen and (max-width: 281px) {
+  .small-card {
+    width: 140px;
+  }
+} */

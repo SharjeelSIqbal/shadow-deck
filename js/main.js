@@ -205,7 +205,7 @@ function addDeleteCard(event) {
           document.querySelector('.question').textContent = 'Add ' + currentData[i].name + ' to your deck?';
           var newModal = document.createElement('img');
           newModal.setAttribute('src', srcImage);
-          newModal.className = 'column-full mobile-friendly';
+          newModal.className = 'desktop-friendly mobile-friendly';
           $add.prepend(newModal);
           modalAppears();
         }
@@ -240,7 +240,7 @@ function addDeleteCard(event) {
         document.querySelector('.question').textContent = 'Delete ' + data.deck[0].cards[i].name + ' from your deck?';
         var $deleteCard = document.createElement('img');
         $deleteCard.src = chosenCardSRC;
-        $deleteCard.className = 'column-full mobile-friendly';
+        $deleteCard.className = 'desktop-friendly mobile-friendly';
         document.querySelector('#add-image').prepend($deleteCard);
 
         modalAppears();
