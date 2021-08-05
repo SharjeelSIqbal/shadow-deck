@@ -25,7 +25,7 @@ function strongestMonsterPlaceHolder(deckNumber) {
       cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
       cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
     } else if (strongestMonsterAtk === 0) {
-      cardPlaceHolder.src = 'images/Yugioh-card-deck.png';
+      cardPlaceHolder.src = 'images/yugioh-card-deck.png';
       cardPlaceHolder.className = 'card-deck view-swap';
     }
   }
@@ -205,7 +205,7 @@ function addDeleteCard(event) {
           document.querySelector('.question').textContent = 'Add ' + currentData[i].name + ' to your deck?';
           var newModal = document.createElement('img');
           newModal.setAttribute('src', srcImage);
-          newModal.className = 'column-full mobile-friendly';
+          newModal.className = 'desktop-friendly mobile-friendly';
           $add.prepend(newModal);
           modalAppears();
         }
@@ -240,7 +240,7 @@ function addDeleteCard(event) {
         document.querySelector('.question').textContent = 'Delete ' + data.deck[0].cards[i].name + ' from your deck?';
         var $deleteCard = document.createElement('img');
         $deleteCard.src = chosenCardSRC;
-        $deleteCard.className = 'column-full mobile-friendly';
+        $deleteCard.className = 'desktop-friendly mobile-friendly';
         document.querySelector('#add-image').prepend($deleteCard);
 
         modalAppears();
@@ -280,16 +280,31 @@ function modalAppears() {
 
 function current20() {
   var yugiohIndex = new XMLHttpRequest();
+  var $error = document.querySelector('#error');
+  yugiohIndex.onloadstart = function () {
+    document.querySelector('#loading').className = 'row justify-center align-center';
+    $error.className = 'hidden';
+  };
+  yugiohIndex.onloadend = function () {
+    document.querySelector('#loading').className = 'hidden';
+  };
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
   yugiohIndex.responseType = 'json';
+
   yugiohIndex.addEventListener('load', function () {
-    var listDataNumber = (currentPage + 1) * 20;
-    for (var i = currentPage * 20; i < listDataNumber; i++) {
-      if (yugiohIndex.response.data[i]) {
-        currentData.push(yugiohIndex.response.data[i]);
+    if (yugiohIndex.status === 400) {
+      $error.className = 'row justify-center align-center';
+    } else {
+
+      var listDataNumber = (currentPage + 1) * 20;
+      for (var i = currentPage * 20; i < listDataNumber; i++) {
+        if (yugiohIndex.response.data[i]) {
+          currentData.push(yugiohIndex.response.data[i]);
+        }
       }
     }
   });
+
   yugiohIndex.send();
 }
 

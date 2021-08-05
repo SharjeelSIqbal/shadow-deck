@@ -2,8 +2,26 @@ body {
   font-family: "Saira Condensed", sans-serif;
 }
 
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  font-size: 28px;
+}
+
 h1 {
-  font-size: 64px;
+  font-size: 42px;
+}
+
+.desktop-friendly {
+  width: 310px;
+  height: 420px;
+}
+
+.roboto {
+  font-family: "Robto", sans-serif;
 }
 
 .card-placeholder {
@@ -35,14 +53,6 @@ h2 {
   background-color: #f6f6f6;
 }
 
-.search-bar-padding {
-  padding: 40px 0;
-}
-
-a {
-  font-size: 28px;
-}
-
 .nav-links {
   text-decoration: none;
 }
@@ -63,6 +73,7 @@ a {
 }
 
 .card {
+  cursor: pointer;
   padding: 20px;
   transition: 0.25s ease-in-out;
 }
@@ -105,13 +116,28 @@ a {
   border-radius: 0.25rem;
 }
 
-@media screen and (max-width: 375px) {
-  .header {
-    justify-content: center;
+@media screen and (max-width: 1024px) {
+  .small-card {
+    flex-basis: calc(100% / 3);
   }
+}
 
+@media screen and (max-width: 642px) {
   h2 {
     text-align: center;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .deck-container {
+    width: 320px;
+    height: 440px;
+  }
+
+  .header {
+    justify-content: center;
   }
 
   .card-container {
@@ -126,10 +152,6 @@ a {
 
   .card-deck {
     width: 85%;
-  }
-
-  nav {
-    display: none;
   }
 
   .small-card {
@@ -175,3 +197,9 @@ a {
     height: 349px;
   }
 }
+
+/* @media screen and (max-width: 281px) {
+  .small-card {
+    width: 140px;
+  }
+} */

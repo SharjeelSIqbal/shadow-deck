@@ -18,6 +18,12 @@
   justify-content: space-around;
 }
 
+.loading {
+  position: absolute;
+  width: 50%;
+  top: 50vh;
+}
+
 .align-center {
   align-items: center;
 }
@@ -56,8 +62,8 @@
   margin: auto auto;
   background-color: white;
   border-radius: 1rem;
-  width: 800px;
-  height: 850px;
+  width: 600px;
+  height: 650px;
   top: 25%;
   right: 25%;
   bottom: 25%;
