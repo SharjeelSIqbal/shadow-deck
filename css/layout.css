@@ -18,6 +18,11 @@
   justify-content: space-around;
 }
 
+.loading {
+  position: absolute;
+  top: 50vh;
+}
+
 .align-center {
   align-items: center;
 }

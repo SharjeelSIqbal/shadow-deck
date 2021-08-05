@@ -58,7 +58,8 @@
       <div id="click-to-add" class="row justify-center align-center">
         <h2>Click "+" to search for a card</h2>
       </div>
-      <div id="deck-row"></div>
+      <div id="deck-row">
+      </div>
     </div>
 
     <div id="search-id" data-view="search" class="tab-view hidden">
@@ -66,6 +67,12 @@
         <input class="column-half search-bar" placetype="Search" placeholder="Search...">
       </div>
         <div id="card-row" class="row justify-center align-center wrap"></div>
+        <div class="row justify-center align-center">
+          <img src="images/millenium_puzzle.gif" alt="" class="loading hidden">
+        </div>
+        <div id="error" class="hidden">
+          <h2>No results available, please search again</h2>
+        </div>
     </div>
     <div id="modal-background" class="modal-appear hidden"></div>
     <div id="modal" class="modal hidden">

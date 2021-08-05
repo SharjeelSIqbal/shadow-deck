@@ -280,16 +280,31 @@ function modalAppears() {
 
 function current20() {
   var yugiohIndex = new XMLHttpRequest();
+  var $error = document.querySelector('#error');
+  yugiohIndex.onloadstart = function () {
+    document.querySelector('.loading').className = 'loading';
+    $error.className = 'hidden';
+  };
+  yugiohIndex.onloadend = function () {
+    document.querySelector('.loading').className = 'loading hidden';
+  };
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
   yugiohIndex.responseType = 'json';
+
   yugiohIndex.addEventListener('load', function () {
-    var listDataNumber = (currentPage + 1) * 20;
-    for (var i = currentPage * 20; i < listDataNumber; i++) {
-      if (yugiohIndex.response.data[i]) {
-        currentData.push(yugiohIndex.response.data[i]);
+    if (yugiohIndex.status === 400) {
+      $error.className = 'row justify-center align-center';
+    } else {
+
+      var listDataNumber = (currentPage + 1) * 20;
+      for (var i = currentPage * 20; i < listDataNumber; i++) {
+        if (yugiohIndex.response.data[i]) {
+          currentData.push(yugiohIndex.response.data[i]);
+        }
       }
     }
   });
+
   yugiohIndex.send();
 }
 
