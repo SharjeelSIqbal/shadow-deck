@@ -282,11 +282,11 @@ function current20() {
   var yugiohIndex = new XMLHttpRequest();
   var $error = document.querySelector('#error');
   yugiohIndex.onloadstart = function () {
-    document.querySelector('.loading').className = 'loading';
+    document.querySelector('#loading').className = 'row justify-center align-center';
     $error.className = 'hidden';
   };
   yugiohIndex.onloadend = function () {
-    document.querySelector('.loading').className = 'loading hidden';
+    document.querySelector('#loading').className = 'hidden';
   };
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
   yugiohIndex.responseType = 'json';
