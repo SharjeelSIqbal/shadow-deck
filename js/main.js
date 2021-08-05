@@ -1,5 +1,6 @@
 var $searchBar = document.querySelector('.search-bar');
 var $cardRow = document.querySelector('#card-row');
+
 var currentPage = 0;
 var currentData = [];
 var currentImage;
@@ -23,8 +24,12 @@ function strongestMonsterPlaceHolder(deckNumber) {
       strongestMonster = card;
       cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
       cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+    } else if (strongestMonsterAtk === 0) {
+      cardPlaceHolder.src = 'images/Yugioh-card-deck.png';
+      cardPlaceHolder.className = 'card-deck view-swap';
     }
   }
+
   return cardPlaceHolder;
 }
 
@@ -51,6 +56,7 @@ function switchView(dataView) {
   for (var i = 0; i < $tabView.length; i++) {
     if ($tabView[i].getAttribute('data-view') === dataView) {
       $tabView[i].className = 'tab-view';
+      data.view = $tabView[i].getAttribute('data-view');
     } else {
       $tabView[i].className = 'tab-view hidden';
     }
@@ -175,7 +181,9 @@ function newDeck(event) {
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
-  appendDeck(data.deck[0]);
+  if (!document.querySelector('#deck-row').children) {
+    appendDeck(data.deck[0]);
+  }
   if (document.querySelector('#no-decks-available')) {
 
     document.querySelector('#no-decks-available').remove();
@@ -183,38 +191,71 @@ function newDeck(event) {
 }
 document.addEventListener('click', newDeck);
 
-function addCard(event) {
-  if ($cardRow.children) {
-    var srcImage;
-    var $modalImage = document.querySelector('#add-image>img');
-    var cards = $cardRow.getElementsByTagName('img');
-    var $add = document.querySelector('#add-image');
-    for (var i = 0; i < cards.length; i++) {
-      if (event.target === cards[i]) {
+function addDeleteCard(event) {
+  var $modalImage = document.querySelector('#add-image>img');
+  if (data.view === 'search') {
+    if ($cardRow.children) {
+      var srcImage;
+      var cards = $cardRow.getElementsByTagName('img');
+      var $add = document.querySelector('#add-image');
+      for (var i = 0; i < cards.length; i++) {
+        if (event.target === cards[i]) {
+          currentImage = i;
+          srcImage = cards[i].getAttribute('src');
+          document.querySelector('.question').textContent = 'Add ' + currentData[i].name + ' to your deck?';
+          var newModal = document.createElement('img');
+          newModal.setAttribute('src', srcImage);
+          newModal.className = 'column-full mobile-friendly';
+          $add.prepend(newModal);
+          modalAppears();
+        }
+      }
+      if (event.target === document.querySelector('.confirm')) {
+
+        addCardToDeck(currentData[currentImage], 0);
+
+        var deckRow = document.querySelector('#deck-card-collector');
+        var imager = document.createElement('img');
+        imager.className = 'small-card card';
+        imager.setAttribute('src', currentData[currentImage].card_images[0].image_url);
+        deckRow.append(imager);
+        updateCounter(0);
+        modalHide();
+        $modalImage.remove();
+      }
+    }
+    if (event.target === document.querySelector('.cancel')) {
+      $modalImage.remove();
+      modalHide();
+    }
+  }
+  if (data.view === 'deck') {
+    var deckCards = document.querySelectorAll('#deck-card-collector>img');
+    var chosenCardSRC = '';
+
+    for (i = 0; i < deckCards.length; i++) {
+      if (event.target === deckCards[i]) {
         currentImage = i;
-        srcImage = cards[i].getAttribute('src');
-        document.querySelector('.question').textContent = 'Add ' + currentData[i].name + ' to your deck?';
-        var newModal = document.createElement('img');
-        newModal.setAttribute('src', srcImage);
-        newModal.className = 'column-full mobile-friendly';
-        $add.prepend(newModal);
+        chosenCardSRC = deckCards[i].getAttribute('src');
+        document.querySelector('.question').textContent = 'Delete ' + data.deck[0].cards[i].name + ' from your deck?';
+        var $deleteCard = document.createElement('img');
+        $deleteCard.src = chosenCardSRC;
+        $deleteCard.className = 'column-full mobile-friendly';
+        document.querySelector('#add-image').prepend($deleteCard);
+
         modalAppears();
+
       }
     }
     if (event.target === document.querySelector('.confirm')) {
-
-      addCardToDeck(currentData[currentImage], 0);
-
-      var deckRow = document.querySelector('#deck-card-collector');
-      var imager = document.createElement('img');
-      imager.className = 'small-card card';
-      imager.setAttribute('src', currentData[currentImage].card_images[0].image_url);
-      deckRow.append(imager);
-      updateCounter(0);
       modalHide();
       $modalImage.remove();
-    }
+      deckCards[currentImage].remove();
+      data.deck[0].cards.splice(currentImage, 1);
+      strongestMonsterPlaceHolder(0);
+      updateCounter(0);
 
+    }
     if (event.target === document.querySelector('.cancel')) {
       $modalImage.remove();
       modalHide();
@@ -260,7 +301,7 @@ function addCardToDeck(dataGiven, deckNumber) {
   }
 }
 
-document.addEventListener('click', addCard);
+document.addEventListener('click', addDeleteCard);
 
 function updateCounter(deckCounter) {
   var cardCounter = document.querySelector('#card-count');

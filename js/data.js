@@ -1,6 +1,7 @@
 /* exported data */
 var data = {
   numberOfDecks: 0,
+  view: 'new',
   deck: []
 };
 
