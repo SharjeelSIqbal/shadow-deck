@@ -1,3 +1,3 @@
-# ajax-project
+# shadow-deck
 
-A dynamic HTML, CSS, and JavaScript solo project.
+A web application for Yu-Gi-Oh! card players who want to build their own decks.
