@@ -3,10 +3,11 @@ var $cardRow = document.querySelector('#card-row');
 var currentPage = 0;
 var currentData = [];
 var currentImage;
+var searchedResult;
 
-if (data.numberOfDecks !== 0) {
+if (data.numberOfDecks > 0) {
   appendDeck(data.deck[0]);
-  document.querySelector('#no-decks-available').remove();
+  document.querySelector('#no-decks-available').className = 'hidden';
   document.querySelector('nav').className = '';
   if (data.deck[0].cards) {
     strongestMonsterPlaceHolder(0);
@@ -65,7 +66,9 @@ function switchView(dataView) {
 
 function handleSubmit(event){
   if(event.target.className === 'submit search-icon'){
-    search($searchBar.value);
+    currentPage = 0;
+    searchedResult = $searchBar.value;
+    search(searchedResult);
     document.querySelector('form').reset();
   }
 }
@@ -83,7 +86,16 @@ document.addEventListener('click', switchViewing);
 function search(inputValue) {
   resetSearch();
   current20();
+  var $error = document.querySelector('#error')
+  var $loading = document.querySelector('#loading');
   var yugiohIndex = new XMLHttpRequest();
+  yugiohIndex.onloadstart = function () {
+    $loading.className = 'row justify-center align-center';
+    $error.className = 'hidden';
+  };
+  yugiohIndex.onloadend = function () {
+    $loading.className = 'hidden';
+  };
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
   yugiohIndex.responseType = 'json';
   yugiohIndex.addEventListener('load', function () {
@@ -104,7 +116,7 @@ function nextPrevPage(event) {
   } if (event.target.matches('.prev-page')) {
     currentPage--;
   }
-  search($searchBar.value);
+  search(searchedResult);
 }
 
 function pages(data, pageNumber) {
@@ -284,14 +296,7 @@ function modalAppears() {
 function current20() {
   var yugiohIndex = new XMLHttpRequest();
   var $error = document.querySelector('#error');
-  yugiohIndex.onloadstart = function () {
-    document.querySelector('#loading').className = 'row justify-center align-center';
-    $error.className = 'hidden';
-  };
-  yugiohIndex.onloadend = function () {
-    document.querySelector('#loading').className = 'hidden';
-  };
-  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
+  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + searchedResult);
   yugiohIndex.responseType = 'json';
 
   yugiohIndex.addEventListener('load', function () {
@@ -307,7 +312,7 @@ function current20() {
       }
     }
   });
-
+  console.log(currentData);
   yugiohIndex.send();
 }
 
