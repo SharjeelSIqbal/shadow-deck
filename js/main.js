@@ -3,7 +3,7 @@ var $cardRow = document.querySelector('#card-row');
 var currentPage = 0;
 var currentData = [];
 var currentImage;
-
+//neccessary change to commit
 if (data.numberOfDecks !== 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').remove();
