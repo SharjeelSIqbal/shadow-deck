@@ -296,7 +296,7 @@ function modalAppears() {
 function current20() {
   var yugiohIndex = new XMLHttpRequest();
   var $error = document.querySelector('#error');
-  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + $searchBar.value);
+  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + searchedResult);
   yugiohIndex.responseType = 'json';
 
   yugiohIndex.addEventListener('load', function () {
