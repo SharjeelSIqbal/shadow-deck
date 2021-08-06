@@ -18,7 +18,16 @@ h1 {
 .logo {
   cursor: pointer;
 }
-
+.search-icon{
+  width: 100%
+}
+.search-button {
+  border:none;
+  padding: 0;
+  margin: 0 1rem;
+  width: 3rem;
+  background-color: white;
+}
 .desktop-friendly {
   width: 310px;
   height: 420px;
