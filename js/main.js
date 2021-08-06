@@ -1,6 +1,5 @@
 var $searchBar = document.querySelector('.search-bar');
 var $cardRow = document.querySelector('#card-row');
-
 var currentPage = 0;
 var currentData = [];
 var currentImage;
@@ -8,6 +7,7 @@ var currentImage;
 if (data.numberOfDecks !== 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').remove();
+  document.querySelector('nav').className = '';
   if (data.deck[0].cards) {
     strongestMonsterPlaceHolder(0);
   }
@@ -181,12 +181,10 @@ function newDeck(event) {
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
-  if (!document.querySelector('#deck-row').children) {
-    appendDeck(data.deck[0]);
-  }
-  if (document.querySelector('#no-decks-available')) {
-
-    document.querySelector('#no-decks-available').remove();
+  appendDeck(data.deck[0]);
+  if (data.numberOfDecks > 0) {
+    document.querySelector('nav').className = '';
+    document.querySelector('#no-decks-available').className = 'hidden';
   }
 }
 document.addEventListener('click', newDeck);
