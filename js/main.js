@@ -5,9 +5,9 @@ var currentData = [];
 var currentImage;
 var searchedResult;
 
-if (data.numberOfDecks !== 0) {
+if (data.numberOfDecks > 0) {
   appendDeck(data.deck[0]);
-  document.querySelector('#no-decks-available').remove();
+  document.querySelector('#no-decks-available').className = 'hidden';
   document.querySelector('nav').className = '';
   if (data.deck[0].cards) {
     strongestMonsterPlaceHolder(0);
@@ -86,6 +86,7 @@ document.addEventListener('click', switchViewing);
 function search(inputValue) {
   resetSearch();
   current20();
+  var $error = document.querySelector('#error')
   var $loading = document.querySelector('#loading');
   var yugiohIndex = new XMLHttpRequest();
   yugiohIndex.onloadstart = function () {
@@ -311,7 +312,7 @@ function current20() {
       }
     }
   });
-
+  console.log(currentData);
   yugiohIndex.send();
 }
 
