@@ -62,6 +62,15 @@ function switchView(dataView) {
     }
   }
 }
+
+function handleSubmit(event){
+  if(event.target.className === 'submit search-icon'){
+    search($searchBar.value);
+    document.querySelector('form').reset();
+  }
+}
+document.addEventListener('click', handleSubmit);
+
 function switchViewing(event) {
   event.preventDefault();
   if (!event.target.matches('.view-swap')) {
@@ -124,10 +133,6 @@ function uploadCard(srcValue) {
   return $cardRow;
 }
 
-function searchInput(event) {
-  search($searchBar.value);
-  currentPage = 0;
-}
 
 function createNextPage(pageNumber, endPage) {
   var pageDivHolder = document.createElement('div');
@@ -168,7 +173,7 @@ function resetSearch() {
   currentData = [];
 
 }
-$searchBar.addEventListener('blur', searchInput);
+;
 document.addEventListener('click', nextPrevPage);
 
 function newDeck(event) {
