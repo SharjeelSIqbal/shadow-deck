@@ -129,12 +129,6 @@ h2 {
   border-radius: 0.25rem;
 }
 
-@media screen and (max-width: 1024px) {
-  .small-card {
-    flex-basis: calc(100% / 3);
-  }
-}
-
 @media screen and (max-width: 642px) {
   h2 {
     text-align: center;
