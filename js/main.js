@@ -19,7 +19,6 @@ if (data.numberOfDecks > 0) {
 
 function strongestMonsterPlaceHolder(deckNumber) {
   const cardPlaceHolderAll = document.querySelectorAll('.no-deck');
-  if(cardPlaceHolderAll.length !== 0){
     let cardPlaceHolder = cardPlaceHolderAll[deckNumber];
     let strongestMonsterAtk = 0;
     let strongestMonster;
@@ -30,16 +29,13 @@ function strongestMonsterPlaceHolder(deckNumber) {
         strongestMonster = card;
 
         cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-        cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+        cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
       } else if (strongestMonsterAtk === 0) {
         cardPlaceHolder.src = 'images/yugioh-card-deck.png';
         cardPlaceHolder.className = 'card-deck view-swap';
       }
     }
     return cardPlaceHolder[deckNumber];
-  } else {
-    return;
-  }
 }
 
 function appendDeck(deck) {
