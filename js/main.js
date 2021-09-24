@@ -197,17 +197,23 @@ function newDeck(event) {
   if (event.target.getAttribute('id') !== 'no-deck') {
     return;
   }
+  document.querySelector('nav').className = '';
+  document.querySelector('#no-decks-available').className = 'hidden';
   data.numberOfDecks++;
   data.deck.push({
     deck: data.numberOfDecks,
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
-  currentDeck = data.numberOfDecks;
-  if (data.numberOfDecks > 0) {
-    document.querySelector('nav').className = '';
-    document.querySelector('#no-decks-available').className = 'hidden';
+  if(data.numberOfDecks === 1){
+    appendDeck(data.deck[0]);
   }
+
+  // currentDeck = data.numberOfDecks;
+  // if (data.numberOfDecks > 0) {
+  //   document.querySelector('nav').className = '';
+  //   document.querySelector('#no-decks-available').className = 'hidden';
+  // }
 }
 document.addEventListener('click', newDeck);
 
@@ -231,7 +237,6 @@ function addDeleteCard(event) {
         }
       }
       if (event.target === document.querySelector('.confirm')) {
-
         addCardToDeck(currentData[currentImage], 0);
         const deckRow = document.querySelector('#deck-card-collector');
         const imager = document.createElement('img');
