@@ -10,29 +10,36 @@ if (data.numberOfDecks > 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').className = 'hidden';
   document.querySelector('nav').className = '';
-  if (data.deck[0].cards) {
-    strongestMonsterPlaceHolder(0);
+  for(let i = 0; i < data.numberOfDecks; i++){
+    if(data.deck[i].cards.length !== 0){
+      strongestMonsterPlaceHolder(i)
+    }
   }
 }
 
 function strongestMonsterPlaceHolder(deckNumber) {
-  const cardPlaceHolder = document.querySelector('#no-deck');
-  let strongestMonsterAtk = 0;
-  let strongestMonster;
-  for (let i = 0; i < data.deck[deckNumber].cards.length; i++) {
-    let card = data.deck[deckNumber].cards[i];
-    if (card.atk && card.atk > strongestMonsterAtk) {
-      strongestMonsterAtk = card.atk;
-      strongestMonster = card;
-      cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-      cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
-    } else if (strongestMonsterAtk === 0) {
-      cardPlaceHolder.src = 'images/yugioh-card-deck.png';
-      cardPlaceHolder.className = 'card-deck view-swap';
-    }
-  }
+  const cardPlaceHolderAll = document.querySelectorAll('.no-deck');
+  if(cardPlaceHolderAll.length !== 0){
+    let cardPlaceHolder = cardPlaceHolderAll[deckNumber];
+    let strongestMonsterAtk = 0;
+    let strongestMonster;
+    for (let i = 0; i < data.deck[deckNumber].cards.length; i++) {
+      let card = data.deck[deckNumber].cards[i];
+      if (card.atk && card.atk > strongestMonsterAtk) {
+        strongestMonsterAtk = card.atk;
+        strongestMonster = card;
 
-  return cardPlaceHolder;
+        cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+        cardPlaceHolder.className = 'card-deck view-swap card-placeholder';
+      } else if (strongestMonsterAtk === 0) {
+        cardPlaceHolder.src = 'images/yugioh-card-deck.png';
+        cardPlaceHolder.className = 'card-deck view-swap';
+      }
+    }
+    return cardPlaceHolder[deckNumber];
+  } else {
+    return;
+  }
 }
 
 function appendDeck(deck) {
@@ -43,6 +50,7 @@ function appendDeck(deck) {
   deckViewDiv.className = 'row justify-center align-center wrap';
   deckViewDiv.setAttribute('id', 'deck-card-collector');
   deckViewDiv.setAttribute('data-deck', deck.deckView);
+  deckViewDiv.setAttribute('deck-view', 'tab-deck');
   deckView.append(deckViewDiv);
   for (let i = 0; i < deck.cards.length; i++) {
     let imager = document.createElement('img');
@@ -199,8 +207,7 @@ function newDeck(event) {
     cards: [],
     deckView: 'deck-' + data.numberOfDecks
   });
-  // currentDeck++;
-  // appendDeck(data.deck[currentDeck]);
+  currentDeck = data.numberOfDecks;
   if (data.numberOfDecks > 0) {
     document.querySelector('nav').className = '';
     document.querySelector('#no-decks-available').className = 'hidden';
@@ -230,11 +237,10 @@ function addDeleteCard(event) {
       if (event.target === document.querySelector('.confirm')) {
 
         addCardToDeck(currentData[currentImage], 0);
-
         const deckRow = document.querySelector('#deck-card-collector');
         const imager = document.createElement('img');
         imager.className = 'small-card card';
-        imager.setAttribute('src', currentData[currentImage].card_images[0].image_url);
+        imager.src =  currentData[currentImage].card_images[0].image_url;
         deckRow.append(imager);
         updateCounter(0);
         modalHide();
@@ -314,15 +320,13 @@ function current20() {
       }
     }
   });
-  console.log(currentData);
   yugiohIndex.send();
 }
 
 function addCardToDeck(dataGiven, deckNumber) {
-
-  if (data.deck[deckNumber].cards.length < 50) {
+  if (data.deck[deckNumber].cards.length < 51) {
     data.deck[deckNumber].cards.push(dataGiven);
-    strongestMonsterPlaceHolder(0);
+    strongestMonsterPlaceHolder(deckNumber);
   }
 }
 
@@ -331,4 +335,8 @@ document.addEventListener('click', addDeleteCard);
 function updateCounter(deckCounter) {
   const cardCounter = document.querySelector('#card-count');
   cardCounter.textContent = data.deck[deckCounter].cards.length + '/50';
+}
+
+function multipleDecks(){
+  return;
 }
