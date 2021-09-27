@@ -21,17 +21,23 @@ function setStrongestMonsterPlaceHolder(deckNumber) {
   const cardPlaceHolder = cardPlaceHolderAll[deckNumber];
   let strongestMonsterAtk = 0;
   let strongestMonster;
-  for (let i = 0; i < data.deck[deckNumber].cards.length; i++) {
-    const card = data.deck[deckNumber].cards[i];
-    if (card.atk && card.atk > strongestMonsterAtk) {
-      strongestMonsterAtk = card.atk;
-      strongestMonster = card;
+  if (data.deck[deckNumber].cards.length === 0) {
+    cardPlaceHolder.src = 'images/yugioh-card-deck.png';
+    cardPlaceHolder.className = 'card-deck view-swap no-deck';
+  } else {
 
-      cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-      cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
-    } else if (strongestMonsterAtk === 0) {
-      cardPlaceHolder.src = 'images/yugioh-card-deck.png';
-      cardPlaceHolder.className = 'card-deck view-swap';
+    for (let i = 0; i < data.deck[deckNumber].cards.length; i++) {
+      const card = data.deck[deckNumber].cards[i];
+      if (card.atk && card.atk > strongestMonsterAtk) {
+        strongestMonsterAtk = card.atk;
+        strongestMonster = card;
+
+        cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+        cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
+      } else if (strongestMonsterAtk === 0) {
+        cardPlaceHolder.src = 'images/yugioh-card-deck.png';
+        cardPlaceHolder.className = 'card-deck view-swap';
+      }
     }
   }
   return cardPlaceHolder[deckNumber];
@@ -257,7 +263,6 @@ function addDeleteCard(event) {
         $deleteCard.src = chosenCardSRC;
         $deleteCard.className = 'desktop-friendly mobile-friendly';
         document.querySelector('#add-image').prepend($deleteCard);
-
         modalAppears();
 
       }
@@ -289,7 +294,7 @@ function modalHide() {
 function modalAppears() {
   const $modalBack = document.querySelector('#modal-background');
   const $modal = document.querySelector('#modal');
-  $modal.className = 'modal';
+  $modal.className = 'modal row justify-center align-center';
   $modalBack.className = 'modal-appear';
 }
 

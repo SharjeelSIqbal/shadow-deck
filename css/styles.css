@@ -32,7 +32,7 @@ h1 {
 }
 
 .desktop-friendly {
-  width: 60%;
+  width: 100%;
 }
 
 .roboto {
@@ -124,7 +124,7 @@ h2 {
 .cancel {
   margin: 3rem 0;
   font-size: 28px;
-  width: 20%;
+  width: 30%;
   height: 3rem;
   color: white;
   border: none;
@@ -176,22 +176,11 @@ h2 {
     width: 80%;
   }
 
-  .modal {
-    text-align: center;
-    top: 25%;
-    left: 25%;
-    right: 25%;
-    bottom: 25%;
-    background-color: white;
-    border-radius: 1rem;
-    position: fixed;
-  }
-
   .confirm,
   .cancel {
     margin: 1.5rem 0;
-    font-size: 30px;
-    width: 125px;
+    font-size: 12px;
+    width: 30%;
     height: 2.5rem;
     color: white;
     border: none;
