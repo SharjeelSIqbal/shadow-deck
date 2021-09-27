@@ -23,6 +23,12 @@ h1 {
   width: 100%;
 }
 
+.background {
+  border-radius: 1rem;
+  width: 80%;
+  background-color: whitesmoke;
+}
+
 .search-button {
   border: none;
   padding: 0;
@@ -32,7 +38,7 @@ h1 {
 }
 
 .desktop-friendly {
-  width: 100%;
+  width: 60%;
 }
 
 .roboto {
@@ -173,7 +179,7 @@ h2 {
   }
 
   .mobile-friendly {
-    width: 80%;
+    width: 60%;
   }
 
   .confirm,
@@ -191,8 +197,4 @@ h2 {
     width: 238px;
     height: 349px;
   }
-}
-
-.question {
-  width: 80%;
 }
