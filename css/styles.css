@@ -18,19 +18,21 @@ h1 {
 .logo {
   cursor: pointer;
 }
-.search-icon{
-  width: 100%
+
+.search-icon {
+  width: 100%;
 }
+
 .search-button {
-  border:none;
+  border: none;
   padding: 0;
   margin: 0 1rem;
   width: 3rem;
   background-color: white;
 }
+
 .desktop-friendly {
-  width: 310px;
-  height: 420px;
+  width: 60%;
 }
 
 .roboto {
@@ -121,8 +123,8 @@ h2 {
 .confirm,
 .cancel {
   margin: 3rem 0;
-  font-size: 40px;
-  width: 200px;
+  font-size: 28px;
+  width: 20%;
   height: 3rem;
   color: white;
   border: none;
@@ -171,20 +173,17 @@ h2 {
   }
 
   .mobile-friendly {
-    width: 250px;
-    height: 350px;
+    width: 80%;
   }
 
   .modal {
     text-align: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 25%;
     background-color: white;
     border-radius: 1rem;
-    width: 350px;
-    height: 600px;
     position: fixed;
   }
 
@@ -205,8 +204,6 @@ h2 {
   }
 }
 
-/* @media screen and (max-width: 281px) {
-  .small-card {
-    width: 140px;
-  }
-} */
+.question {
+  width: 80%;
+}
