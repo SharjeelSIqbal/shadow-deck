@@ -69,7 +69,7 @@
     <div id="search-id" data-view="search" class="tab-view hidden">
       <form action="submit">
         <div id="search-bar" class="column-full row justify-center">
-          <input  class="column-half search-bar" placetype="Search" placeholder="Search...">
+          <input  class="column-half search-bar" placetype="Search" placeholder="Search..." required>
           <button class="search-button" type="submit"><img class="submit search-icon" src="images/search-icon.png" alt=""></button>
         </div>
       </form>
@@ -85,16 +85,18 @@
     <div id="modal-background" class="modal-appear hidden"></div>
     <div class="row justify-center align-center">
       <div id="modal" class="modal hidden row justify-center align-center">
-        <div class="row justify-center wrap">
-          <div class="row column-full wrap justify-center align-center column-full">
-            <h2 class="question Roboto"></h2>
-          </div>
-          <div class="row justify-center align-center column-full">
-            <div id="add-image" class="row justify-center"></div>
-          </div>
-          <div class="row space-evenly align-center column-full">
-            <button class="confirm column-half">Confirm</button>
-            <button class="cancel column-half">Cancel</button>
+        <div class="background">
+          <div class="row justify-center wrap">
+            <div class="row column-full wrap justify-center align-center column-full">
+              <h2 class="question Roboto"></h2>
+            </div>
+            <div class="row justify-center align-center column-full">
+              <div id="add-image" class="row justify-center"></div>
+            </div>
+            <div class="row space-evenly align-center column-full">
+              <button class="confirm column-half">Confirm</button>
+              <button class="cancel column-half">Cancel</button>
+            </div>
           </div>
         </div>
       </div>

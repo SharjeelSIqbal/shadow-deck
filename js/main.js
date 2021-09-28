@@ -130,18 +130,20 @@ function nextPrevPage(event) {
 }
 
 function pages(data, pageNumber) {
-  const listDataNumber = (pageNumber + 1) * 20;
-  const capped20Array = [];
-  const endPage = Math.ceil(data.length / 20);
-  createNextPage(pageNumber, endPage);
-  pageIndexCount(listDataNumber, data.length);
-  for (let i = pageNumber * 20; i < listDataNumber; i++) {
-    if (data[i]) {
-      capped20Array.push(data[i]);
+  if (data) {
+    const listDataNumber = (pageNumber + 1) * 20;
+    const capped20Array = [];
+    const endPage = Math.ceil(data.length / 20);
+    createNextPage(pageNumber, endPage);
+    pageIndexCount(listDataNumber, data.length);
+    for (let i = pageNumber * 20; i < listDataNumber; i++) {
+      if (data[i]) {
+        capped20Array.push(data[i]);
+      }
     }
-  }
-  for (let i = 0; i < capped20Array.length; i++) {
-    uploadCard(capped20Array[i].card_images[0].image_url);
+    for (let i = 0; i < capped20Array.length; i++) {
+      uploadCard(capped20Array[i].card_images[0].image_url);
+    }
   }
 }
 
