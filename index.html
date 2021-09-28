@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/loading.css">
   <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -71,7 +72,9 @@
       </form>
         <div id="card-row" class="row justify-center align-center wrap"></div>
         <div id="loading" class="row justify-center align-center hidden">
-          <img src="images/loading.gif" alt="" class="loading row justify-center align-center">
+          <div class="lds-circle loading row justify-center align-center">
+            <div></div>
+          </div>
           <h2 class="loading row justify-center align-center">Summoning...</h2>
         </div>
         <div id="error" class="hidden">
