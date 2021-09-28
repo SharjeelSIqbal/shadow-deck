@@ -178,7 +178,11 @@ function pageIndexCount(count, total) {
   const $currentCardsRow = document.createElement('div');
   const $currentCards = document.createElement('h2');
   $currentCards.className = 'nav-links';
-  $currentCards.textContent = count - 19 + '-' + count + ' of ' + total;
+  if (count > total) {
+    $currentCards.textContent = `${count - 19}-${total} of ${total}`;
+  } else {
+    $currentCards.textContent = `${count - 19}-${count} of ${total}`;
+  }
   $currentCardsRow.className = 'row justify-center align-center column-full';
 
   $currentCardsRow.append($currentCards);
