@@ -75,7 +75,7 @@ function switchView(dataView) {
 }
 
 function handleSubmit(event) {
-  if (event.target.className === 'submit search-icon') {
+  if (event.target.className === 'submit search-icon' || event.target.type === 'submit') {
     currentPage = 0;
     searchedResult = $searchBar.value;
     search(searchedResult);
@@ -94,26 +94,34 @@ function switchViewing(event) {
 document.addEventListener('click', switchViewing);
 
 function search(inputValue) {
-  resetSearch();
-  current20();
-  const $error = document.querySelector('#error');
-  const $loading = document.querySelector('#loading');
-  const yugiohIndex = new XMLHttpRequest();
-  yugiohIndex.onloadstart = function () {
-    $loading.className = 'row justify-center align-center';
-    $error.className = 'hidden';
-  };
-  yugiohIndex.onloadend = function () {
-    $loading.className = 'hidden';
-  };
-  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
-  yugiohIndex.responseType = 'json';
-  yugiohIndex.addEventListener('load', function () {
-    if (inputValue !== '') {
+  if (inputValue !== '') {
+    resetSearch();
+    current20();
+    const $error = document.querySelector('#error');
+    const $loading = document.querySelector('#loading');
+    const $network = document.querySelector('#network');
+    const yugiohIndex = new XMLHttpRequest();
+    yugiohIndex.onloadstart = function () {
+      $loading.className = 'row justify-center align-center';
+      $error.className = 'hidden';
+      $network.className = 'hidden';
+    };
+    yugiohIndex.onloadend = function () {
+
+      $loading.className = 'hidden';
+      if (yugiohIndex.status >= 400) {
+        $error.className = 'row justify-center align-center';
+      } else if (yugiohIndex.status === 0) {
+        $network.className = 'row justify-center align-center';
+      }
+    };
+    yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
+    yugiohIndex.responseType = 'json';
+    yugiohIndex.addEventListener('load', function () {
       pages(yugiohIndex.response.data, currentPage);
-    }
-  });
-  yugiohIndex.send();
+    });
+    yugiohIndex.send();
+  }
 }
 
 function nextPrevPage(event) {
@@ -178,7 +186,11 @@ function pageIndexCount(count, total) {
   const $currentCardsRow = document.createElement('div');
   const $currentCards = document.createElement('h2');
   $currentCards.className = 'nav-links';
-  $currentCards.textContent = count - 19 + '-' + count + ' of ' + total;
+  if (count > total) {
+    $currentCards.textContent = `${count - 19}-${total} of ${total}`;
+  } else {
+    $currentCards.textContent = `${count - 19}-${count} of ${total}`;
+  }
   $currentCardsRow.className = 'row justify-center align-center column-full';
 
   $currentCardsRow.append($currentCards);
@@ -302,13 +314,10 @@ function modalAppears() {
 
 function current20() {
   const yugiohIndex = new XMLHttpRequest();
-  const $error = document.querySelector('#error');
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + searchedResult);
   yugiohIndex.responseType = 'json';
   yugiohIndex.addEventListener('load', function () {
-    if (yugiohIndex.status === 400) {
-      $error.className = 'row justify-center align-center';
-    } else {
+    if (yugiohIndex.status !== 400) {
       const listDataNumber = (currentPage + 1) * 20;
       for (let i = currentPage * 20; i < listDataNumber; i++) {
         if (yugiohIndex.response.data[i]) {
