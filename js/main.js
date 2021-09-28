@@ -75,7 +75,7 @@ function switchView(dataView) {
 }
 
 function handleSubmit(event) {
-  if (event.target.className === 'submit search-icon') {
+  if (event.target.className === 'submit search-icon' || event.target.type === 'submit') {
     currentPage = 0;
     searchedResult = $searchBar.value;
     search(searchedResult);

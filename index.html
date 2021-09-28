@@ -48,12 +48,14 @@
     </div>
 
     <div id="deck-id" data-view="deck" class="tab-view hidden">
-      <div id="card-deck-count" class="minor-padding column-full row space-between">
-        <div class="silver-color">
-          <a data-view="search" id="add-card" class="view-swap">+</a>
-        </div>
-        <div class="silver-color justify-self-center">
-          <h2 id="card-count">0/50</h2>
+      <div id="card-deck-count" class="minor-padding column-full row justify-center align-center">
+        <div class="column-half row space-evenly" >
+          <div class="silver-color align-center">
+            <h2 id="card-count">0/50</h2>
+          </div>
+          <div class="silver-color row align-center">
+            <a data-view="search" id="add-card" class="view-swap">+</a>
+          </div>
         </div>
       </div>
       <div id="click-to-add" class="row justify-center align-center">
@@ -63,11 +65,9 @@
       </div>
     </div>
     <div id="search-id" data-view="search" class="tab-view hidden">
-      <form action="submit">
-        <div id="search-bar" class="column-full row justify-center">
-          <input class="column-half search-bar" placetype="Search" placeholder="Search..." required>
-          <button class="search-button" type="submit"><img class="submit search-icon" src="images/search-icon.png" alt=""></button>
-        </div>
+      <form action="submit" id="search-bar" class="column-full row justify-center">
+        <input class="column-half search-bar" placetype="Search" placeholder="Search..." required>
+        <button class="search-button submit" type="submit"><img class="submit search-icon" src="images/search-icon.png" alt=""></button>
       </form>
         <div id="card-row" class="row justify-center align-center wrap"></div>
         <div id="loading" class="row justify-center align-center hidden">
