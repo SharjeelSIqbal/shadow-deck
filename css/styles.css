@@ -141,6 +141,10 @@ h2 {
   border-radius: 0.25rem;
 }
 
+.margin-loading {
+  margin-top: 2rem;
+}
+
 @media screen and (max-width: 1280px) {
   .small-card {
     width: calc(100% / 3);
