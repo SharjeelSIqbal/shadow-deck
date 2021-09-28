@@ -99,13 +99,21 @@ function search(inputValue) {
     current20();
     const $error = document.querySelector('#error');
     const $loading = document.querySelector('#loading');
+    const $network = document.querySelector('#network');
     const yugiohIndex = new XMLHttpRequest();
     yugiohIndex.onloadstart = function () {
       $loading.className = 'row justify-center align-center';
       $error.className = 'hidden';
+      $network.className = 'hidden';
     };
     yugiohIndex.onloadend = function () {
+
       $loading.className = 'hidden';
+      if (yugiohIndex.status >= 400) {
+        $error.className = 'row justify-center align-center';
+      } else if (yugiohIndex.status === 0) {
+        $network.className = 'row justify-center align-center';
+      }
     };
     yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
     yugiohIndex.responseType = 'json';
@@ -306,13 +314,10 @@ function modalAppears() {
 
 function current20() {
   const yugiohIndex = new XMLHttpRequest();
-  const $error = document.querySelector('#error');
   yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + searchedResult);
   yugiohIndex.responseType = 'json';
   yugiohIndex.addEventListener('load', function () {
-    if (yugiohIndex.status === 400) {
-      $error.className = 'row justify-center align-center';
-    } else {
+    if (yugiohIndex.status !== 400) {
       const listDataNumber = (currentPage + 1) * 20;
       for (let i = currentPage * 20; i < listDataNumber; i++) {
         if (yugiohIndex.response.data[i]) {
