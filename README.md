@@ -31,7 +31,7 @@ https://user-images.githubusercontent.com/50930123/135357737-667d5cf3-d5c5-4974-
 https://user-images.githubusercontent.com/50930123/135358005-efaef352-4829-40fd-948d-292b2f3b469f.mov
 
 
-##Extra Features
+##Future Features
 1. User can create multiple decks
 2. User can view card details
 3. User can search by card type (Spell, Trap, Monster, Fusion, etc...)
