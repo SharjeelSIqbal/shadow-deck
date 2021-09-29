@@ -5,12 +5,12 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 [Live Depolyment](https://sharjeelsiqbal.github.io/shadow-deck/)
 
 
-##Languages 
+## Languages 
 1. HTML
 2. JavaScript
 3. CSS
 
-##API
+## API
 [Yu-Gi-Oh! API](https://db.ygoprodeck.com/api-guide/)
 
 ##Features
@@ -20,5 +20,4 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 5. User can view deck
 6. User can delete cards
 
-##
 
