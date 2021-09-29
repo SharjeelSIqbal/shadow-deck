@@ -35,3 +35,9 @@ https://user-images.githubusercontent.com/50930123/135358005-efaef352-4829-40fd-
 1. User can create multiple decks
 2. User can view card details
 3. User can search by card type (Spell, Trap, Monster, Fusion, etc...)
+
+## System Requirements
+1. A system that can run Google Chrome and VSCode
+
+## Getting started
+1. Create an HTML, JavaScript, and CSS file and start coding.
