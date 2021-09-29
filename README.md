@@ -13,7 +13,7 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 ## API
 [Yu-Gi-Oh! API](https://db.ygoprodeck.com/api-guide/)
 
-##Features
+## Features
 1. User can search for a card
 3. User can view cards
 4. User can add cards to deck
