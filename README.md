@@ -14,10 +14,21 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 [Yu-Gi-Oh! API](https://db.ygoprodeck.com/api-guide/)
 
 ## Features
-1. User can search for a card [sometext](https://user-images.githubusercontent.com/50930123/135353714-1c40c534-9939-4674-bed2-3faee3c8206f.mov)
-2. User can view cards
-3. User can add cards to deck
-4. User can view deck
+1. User can search for a card ![Kapture 2021-09-29 at 15 12 31](https://user-images.githubusercontent.com/50930123/135355910-6448a8a3-bf74-4c00-b605-fd8ef39fca72.gif)
+
+2. User can view cards ![Kapture 2021-09-29 at 15 16 39](https://user-images.githubusercontent.com/50930123/135356303-dce15ac1-8980-48ff-90f0-2abea9c969db.gif)
+
+3. User can add cards to deck![Kapture 2021-09-29 at 15 15 22](https://user-images.githubusercontent.com/50930123/135356208-63ba2c11-9b41-4ac1-8b3b-6bd44c1ae31f.gif)
+
+4. User can view deck 
+
+https://user-images.githubusercontent.com/50930123/135357737-667d5cf3-d5c5-4974-b82e-d7db5d9cc1be.mov
+
+
 5. User can delete cards
+
+d
+https://user-images.githubusercontent.com/50930123/135358005-efaef352-4829-40fd-948d-292b2f3b469f.mov
+
 
 
