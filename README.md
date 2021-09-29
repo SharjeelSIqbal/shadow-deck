@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/50930123/135357737-667d5cf3-d5c5-4974-
 
 5. User can delete cards
 
-d
+
 https://user-images.githubusercontent.com/50930123/135358005-efaef352-4829-40fd-948d-292b2f3b469f.mov
 
 
