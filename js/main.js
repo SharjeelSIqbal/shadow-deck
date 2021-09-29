@@ -251,13 +251,17 @@ function addDeleteCard(event) {
         }
       }
       if (event.target === document.querySelector('.confirm')) {
-        addCardToDeck(currentData[currentImage], 0);
-        const deckRow = document.querySelector('#deck-card-collector');
-        const imager = document.createElement('img');
-        imager.className = 'small-card card';
-        imager.src = currentData[currentImage].card_images[0].image_url;
-        deckRow.append(imager);
-        updateCounter();
+        if (data.deck[0].cards.length < 50) {
+          addCardToDeck(currentData[currentImage], 0);
+          const deckRow = document.querySelector('#deck-card-collector');
+          const imager = document.createElement('img');
+          imager.className = 'small-card card';
+          imager.src = currentData[currentImage].card_images[0].image_url;
+          deckRow.append(imager);
+          updateCounter();
+        } else {
+          alert('Deck is full, please delete cards to make room for new cards');
+        }
         modalHide();
         $modalImage.remove();
       }
@@ -332,15 +336,12 @@ function current20() {
 }
 
 function addCardToDeck(card) {
-  if (data.deck[0].cards.length >= 50) {
-    alert('Deck is full, please delete cards to make room for new cards');
-    return;
-  }
   data.deck[0].cards.push(card);
   if (card.type !== 'Spell Card' && card.type !== 'Trap Card') {
     setStrongestMonsterPlaceHolder();
   }
   updateCounter();
+
 }
 
 document.addEventListener('click', addDeleteCard);
