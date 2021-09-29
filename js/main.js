@@ -9,38 +9,33 @@ if (data.numberOfDecks > 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').className = 'hidden';
   document.querySelector('nav').className = '';
-  for (let i = 0; i < data.numberOfDecks; i++) {
-    if (data.deck[i].cards.length !== 0) {
-      setStrongestMonsterPlaceHolder(i);
-    }
+  if (data.deck[0].cards.length !== 0) {
+    setStrongestMonsterPlaceHolder();
   }
 }
 
-function setStrongestMonsterPlaceHolder(deckNumber) {
-  const cardPlaceHolderAll = document.querySelectorAll('.no-deck');
-  const cardPlaceHolder = cardPlaceHolderAll[deckNumber];
+function setStrongestMonsterPlaceHolder() {
+  const cardPlaceHolder = document.querySelector('.no-deck');
   let strongestMonsterAtk = 0;
   let strongestMonster;
-  if (data.deck[deckNumber].cards.length === 0) {
+  if (data.deck[0].cards.length === 0) {
     cardPlaceHolder.src = 'images/yugioh-card-deck.png';
     cardPlaceHolder.className = 'card-deck view-swap no-deck';
   } else {
-
-    for (let i = 0; i < data.deck[deckNumber].cards.length; i++) {
-      const card = data.deck[deckNumber].cards[i];
-      if (card.atk && card.atk > strongestMonsterAtk) {
+    for (let i = 0; i < data.deck[0].cards.length; i++) {
+      const card = data.deck[0].cards[i];
+      if (card.type !== 'Spell Card' && card.type !== 'Trap Card') {
         strongestMonsterAtk = card.atk;
         strongestMonster = card;
-
         cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
         cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
       } else if (strongestMonsterAtk === 0) {
         cardPlaceHolder.src = 'images/yugioh-card-deck.png';
-        cardPlaceHolder.className = 'card-deck view-swap';
+        cardPlaceHolder.className = 'card-deck view-swap no-deck';
       }
     }
   }
-  return cardPlaceHolder[deckNumber];
+  return cardPlaceHolder[0];
 }
 
 function appendDeck(deck) {
@@ -216,12 +211,14 @@ function newDeck(event) {
   }
   document.querySelector('nav').className = '';
   document.querySelector('#no-decks-available').className = 'hidden';
-  data.numberOfDecks++;
-  data.deck.push({
-    deck: data.numberOfDecks,
-    cards: [],
-    deckView: 'deck-' + data.numberOfDecks
-  });
+  if (data.numberOfDecks === 0) {
+    data.numberOfDecks++;
+    data.deck.push({
+      deck: data.numberOfDecks,
+      cards: [],
+      deckView: 'deck-' + data.numberOfDecks
+    });
+  }
   if (data.numberOfDecks === 1) {
     appendDeck(data.deck[0]);
   }
@@ -254,7 +251,7 @@ function addDeleteCard(event) {
         imager.className = 'small-card card';
         imager.src = currentData[currentImage].card_images[0].image_url;
         deckRow.append(imager);
-        updateCounter(0);
+        updateCounter();
         modalHide();
         $modalImage.remove();
       }
@@ -278,7 +275,6 @@ function addDeleteCard(event) {
         $deleteCard.className = 'desktop-friendly mobile-friendly';
         document.querySelector('#add-image').prepend($deleteCard);
         modalAppears();
-
       }
     }
     if (event.target === document.querySelector('.confirm')) {
@@ -286,8 +282,8 @@ function addDeleteCard(event) {
       $modalImage.remove();
       deckCards[currentImage].remove();
       data.deck[0].cards.splice(currentImage, 1);
-      setStrongestMonsterPlaceHolder(0);
-      updateCounter(0);
+      updateCounter();
+      setStrongestMonsterPlaceHolder();
 
     }
     if (event.target === document.querySelector('.cancel')) {
@@ -329,20 +325,20 @@ function current20() {
   yugiohIndex.send();
 }
 
-function addCardToDeck(card, deckNumber) {
-  if (data.deck[deckNumber].cards.length >= 50) {
+function addCardToDeck(card) {
+  if (data.deck[0].cards.length >= 50) {
     return;
   }
-  data.deck[deckNumber].cards.push(card);
+  data.deck[0].cards.push(card);
   if (card.type !== 'Spell Card' && card.type !== 'Trap Card') {
-    setStrongestMonsterPlaceHolder(deckNumber);
+    setStrongestMonsterPlaceHolder();
   }
-  updateCounter(deckNumber);
+  updateCounter();
 }
 
 document.addEventListener('click', addDeleteCard);
 
-function updateCounter(deckCounter) {
+function updateCounter() {
   const cardCounter = document.querySelector('#card-count');
-  cardCounter.textContent = data.deck[deckCounter].cards.length + '/50';
+  cardCounter.textContent = data.deck[0].cards.length + '/50';
 }
