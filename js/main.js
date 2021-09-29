@@ -24,11 +24,13 @@ function setStrongestMonsterPlaceHolder() {
   } else {
     for (let i = 0; i < data.deck[0].cards.length; i++) {
       const card = data.deck[0].cards[i];
-      if (card.type !== 'Spell Card' && card.type !== 'Trap Card') {
-        strongestMonsterAtk = card.atk;
-        strongestMonster = card;
-        cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
-        cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
+      if (card.atk) {
+        if (strongestMonsterAtk <= card.atk) {
+          strongestMonsterAtk = card.atk;
+          strongestMonster = card;
+          cardPlaceHolder.setAttribute('src', strongestMonster.card_images[0].image_url);
+          cardPlaceHolder.className = 'card-deck view-swap card-placeholder no-deck';
+        }
       } else if (strongestMonsterAtk === 0) {
         cardPlaceHolder.src = 'images/yugioh-card-deck.png';
         cardPlaceHolder.className = 'card-deck view-swap no-deck';
@@ -72,11 +74,14 @@ function switchView(dataView) {
 }
 
 function handleSubmit(event) {
+
   event.preventDefault();
   if (event.target.matches('.submit')) {
     currentPage = 0;
-    searchedResult = $searchBar.value;
-    search(searchedResult);
+    if ($searchBar.value !== '') {
+      searchedResult = $searchBar.value;
+      search(searchedResult);
+    }
     document.querySelector('form').reset();
   }
 }
@@ -92,34 +97,32 @@ function switchViewing(event) {
 document.addEventListener('click', switchViewing);
 
 function search(inputValue) {
-  if (inputValue !== '') {
-    resetSearch();
-    current20();
-    const $error = document.querySelector('#error');
-    const $loading = document.querySelector('#loading');
-    const $network = document.querySelector('#network');
-    const yugiohIndex = new XMLHttpRequest();
-    yugiohIndex.onloadstart = function () {
-      $loading.className = 'row justify-center align-center';
-      $error.className = 'hidden';
-      $network.className = 'hidden';
-    };
-    yugiohIndex.onloadend = function () {
+  resetSearch();
+  current20();
+  const $error = document.querySelector('#error');
+  const $loading = document.querySelector('#loading');
+  const $network = document.querySelector('#network');
+  const yugiohIndex = new XMLHttpRequest();
+  yugiohIndex.onloadstart = function () {
+    $loading.className = 'row justify-center align-center';
+    $error.className = 'hidden';
+    $network.className = 'hidden';
+  };
+  yugiohIndex.onloadend = function () {
 
-      $loading.className = 'hidden';
-      if (yugiohIndex.status >= 400) {
-        $error.className = 'row justify-center align-center';
-      } else if (yugiohIndex.status === 0) {
-        $network.className = 'row justify-center align-center';
-      }
-    };
-    yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
-    yugiohIndex.responseType = 'json';
-    yugiohIndex.addEventListener('load', function () {
-      pages(yugiohIndex.response.data, currentPage);
-    });
-    yugiohIndex.send();
-  }
+    $loading.className = 'hidden';
+    if (yugiohIndex.status >= 400) {
+      $error.className = 'row justify-center align-center';
+    } else if (yugiohIndex.status === 0) {
+      $network.className = 'row justify-center align-center';
+    }
+  };
+  yugiohIndex.open('GET', 'https://db.ygoprodeck.com/api/v7/cardinfo.php?&fname=' + inputValue);
+  yugiohIndex.responseType = 'json';
+  yugiohIndex.addEventListener('load', function () {
+    pages(yugiohIndex.response.data, currentPage);
+  });
+  yugiohIndex.send();
 }
 
 function nextPrevPage(event) {
@@ -330,6 +333,7 @@ function current20() {
 
 function addCardToDeck(card) {
   if (data.deck[0].cards.length >= 50) {
+    alert('Deck is full, please delete cards to make room for new cards');
     return;
   }
   data.deck[0].cards.push(card);
