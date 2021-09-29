@@ -332,7 +332,7 @@ function current20() {
 }
 
 function addCardToDeck(card) {
-  if (data.deck[0].cards.length >= 50) {
+  if (data.deck[0].cards.length > 50) {
     alert('Deck is full, please delete cards to make room for new cards');
     return;
   }
