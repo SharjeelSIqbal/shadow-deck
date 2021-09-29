@@ -47,7 +47,9 @@ function appendDeck(deck) {
   deckViewDiv.setAttribute('id', 'deck-card-collector');
   deckViewDiv.setAttribute('data-deck', deck.deckView);
   deckViewDiv.setAttribute('deck-view', 'tab-deck');
-  deckView.append(deckViewDiv);
+  if (!document.querySelector('#deck-card-collector')) {
+    deckView.append(deckViewDiv);
+  }
   for (let i = 0; i < deck.cards.length; i++) {
     const imager = document.createElement('img');
     imager.className = 'small-card card';
@@ -70,7 +72,8 @@ function switchView(dataView) {
 }
 
 function handleSubmit(event) {
-  if (event.target.className === 'submit search-icon' || event.target.type === 'submit') {
+  event.preventDefault();
+  if (event.target.matches('.submit')) {
     currentPage = 0;
     searchedResult = $searchBar.value;
     search(searchedResult);
