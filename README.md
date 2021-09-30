@@ -15,7 +15,11 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 
 # Features
 ## User can search for a card 
-![Kapture 2021-09-29 at 15 12 31](https://user-images.githubusercontent.com/50930123/135355910-6448a8a3-bf74-4c00-b605-fd8ef39fca72.gif)
+
+
+https://user-images.githubusercontent.com/50930123/135511983-193fb571-2349-43e9-b235-20a40c483f30.mp4
+
+
 
 ## User can view cards
  ![Kapture 2021-09-29 at 15 16 39](https://user-images.githubusercontent.com/50930123/135356303-dce15ac1-8980-48ff-90f0-2abea9c969db.gif)
