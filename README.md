@@ -18,13 +18,14 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 ![Kapture 2021-09-30 at 11 43 55](https://user-images.githubusercontent.com/50930123/135512887-4c26820a-1291-41fd-86c4-395d5fc97c8a.gif)
 
 ## User can view cards
- ![Kapture 2021-09-29 at 15 16 39](https://user-images.githubusercontent.com/50930123/135356303-dce15ac1-8980-48ff-90f0-2abea9c969db.gif)
+![Kapture 2021-09-30 at 12 49 19](https://user-images.githubusercontent.com/50930123/135520986-863ebee0-8e97-4f8c-9388-cb5a9add4dce.gif)
+
 
 ## User can add cards to deck
-![Kapture 2021-09-29 at 15 15 22](https://user-images.githubusercontent.com/50930123/135356208-63ba2c11-9b41-4ac1-8b3b-6bd44c1ae31f.gif)
+![Kapture 2021-09-30 at 12 51 17](https://user-images.githubusercontent.com/50930123/135521240-2e3c0e06-1352-464e-9ea9-722f141814bd.gif)
+
 
 ## User can view deck 
-
 ![Kapture 2021-09-30 at 12 40 53](https://user-images.githubusercontent.com/50930123/135519991-23ce16ad-6bc3-40b0-a8dc-2e5cf7b195a1.gif)
 
 
