@@ -53,10 +53,10 @@ function appendDeck(deck) {
     deckView.append(deckViewDiv);
   }
   for (let i = 0; i < deck.cards.length; i++) {
-    const imager = document.createElement('img');
-    imager.className = 'small-card card';
-    imager.setAttribute('src', deck.cards[i].card_images[0].image_url);
-    deckViewDiv.append(imager);
+    const image = document.createElement('img');
+    image.className = 'small-card card';
+    image.setAttribute('src', deck.cards[i].card_images[0].image_url);
+    deckViewDiv.append(image);
   }
   return deckView;
 }
@@ -254,10 +254,10 @@ function addDeleteCard(event) {
         if (data.deck[0].cards.length < 50) {
           addCardToDeck(currentData[currentImage], 0);
           const deckRow = document.querySelector('#deck-card-collector');
-          const imager = document.createElement('img');
-          imager.className = 'small-card card';
-          imager.src = currentData[currentImage].card_images[0].image_url;
-          deckRow.append(imager);
+          const image = document.createElement('img');
+          image.className = 'small-card card';
+          image.src = currentData[currentImage].card_images[0].image_url;
+          deckRow.append(image);
           updateCounter();
         }
         modalHide();
