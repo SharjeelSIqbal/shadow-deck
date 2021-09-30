@@ -57,7 +57,6 @@ h1 {
 
 .prev-page,
 .next-page,
-#delete-card,
 #add-card,
 h2 {
   font-size: 32px;
@@ -185,8 +184,6 @@ h2 {
 
   .small-card {
     width: 50%;
-
-    /* height: 220px; */
   }
 
   .card {
