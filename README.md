@@ -15,11 +15,7 @@ When I was younger my brothers and I would play _Yu-Gi-Oh!_ after school almost 
 
 # Features
 ## User can search for a card 
-
-
-https://user-images.githubusercontent.com/50930123/135511983-193fb571-2349-43e9-b235-20a40c483f30.mp4
-
-
+![Kapture 2021-09-30 at 11 43 55](https://user-images.githubusercontent.com/50930123/135512887-4c26820a-1291-41fd-86c4-395d5fc97c8a.gif)
 
 ## User can view cards
  ![Kapture 2021-09-29 at 15 16 39](https://user-images.githubusercontent.com/50930123/135356303-dce15ac1-8980-48ff-90f0-2abea9c969db.gif)
@@ -28,11 +24,13 @@ https://user-images.githubusercontent.com/50930123/135511983-193fb571-2349-43e9-
 ![Kapture 2021-09-29 at 15 15 22](https://user-images.githubusercontent.com/50930123/135356208-63ba2c11-9b41-4ac1-8b3b-6bd44c1ae31f.gif)
 
 ## User can view deck 
-https://user-images.githubusercontent.com/50930123/135357737-667d5cf3-d5c5-4974-b82e-d7db5d9cc1be.mov
+
+![Kapture 2021-09-30 at 12 40 53](https://user-images.githubusercontent.com/50930123/135519991-23ce16ad-6bc3-40b0-a8dc-2e5cf7b195a1.gif)
 
 
 ## User can delete cards
-https://user-images.githubusercontent.com/50930123/135358005-efaef352-4829-40fd-948d-292b2f3b469f.mov
+![Kapture 2021-09-30 at 12 42 24](https://user-images.githubusercontent.com/50930123/135520723-66ac0873-3ec6-4863-a36a-d0f07a0b9037.gif)
+
 
 
 ## Future features
