@@ -8,11 +8,11 @@ a {
 }
 
 a {
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 
 h1 {
-  font-size: 42px;
+  font-size: 2.5rem;
 }
 
 .question {
@@ -59,7 +59,7 @@ h1 {
 .next-page,
 #add-card,
 h2 {
-  font-size: 32px;
+  font-size: 2rem;
 }
 
 .header {
@@ -108,14 +108,14 @@ h2 {
 
 .nav-links,
 .minor-padding {
-  padding: 0 40px;
+  padding: 0 2.25rem;
 }
 
 .search-bar {
   box-shadow: 2px 1px lightslategray;
   padding-left: 0.5rem;
   height: 2.5rem;
-  font-size: 24px;
+  font-size: 1.5rem;
   background-color: lightgray;
   border: none;
   border-radius: 0.5rem;
@@ -132,7 +132,7 @@ h2 {
 .confirm,
 .cancel {
   margin: 3rem 0;
-  font-size: 28px;
+  font-size: 1.75rem;
   width: 30%;
   height: 3rem;
   color: white;
@@ -197,7 +197,7 @@ h2 {
   .confirm,
   .cancel {
     margin: 1.5rem 0;
-    font-size: 12px;
+    font-size: 0.75rem;
     width: 30%;
     height: 2.5rem;
     color: white;

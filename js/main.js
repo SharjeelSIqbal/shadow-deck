@@ -259,8 +259,6 @@ function addDeleteCard(event) {
           imager.src = currentData[currentImage].card_images[0].image_url;
           deckRow.append(imager);
           updateCounter();
-        } else {
-          alert('Deck is full, please delete cards to make room for new cards');
         }
         modalHide();
         $modalImage.remove();
