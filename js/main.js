@@ -8,6 +8,7 @@ let searchedResult;
 if (data.numberOfDecks > 0) {
   appendDeck(data.deck[0]);
   document.querySelector('#no-decks-available').className = 'hidden';
+  document.querySelector('#deck-available').className = 'row justify-center align-center';
   document.querySelector('nav').className = '';
   if (data.deck[0].cards.length !== 0) {
     setStrongestMonsterPlaceHolder();
@@ -217,6 +218,7 @@ function newDeck(event) {
   }
   document.querySelector('nav').className = '';
   document.querySelector('#no-decks-available').className = 'hidden';
+  document.querySelector('#deck-available').className = 'row justify-center align-center';
   if (data.numberOfDecks === 0) {
     data.numberOfDecks++;
     data.deck.push({
